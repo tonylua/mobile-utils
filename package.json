@@ -1,0 +1,23 @@
+{
+  "name": "mobile-utils",
+  "version": "1.0.0",
+  "description": "common utils of mobile html5 development",
+  "main": "dist/mobile-utils",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tonylua/mobile-utils.git"
+  },
+  "keywords": [
+    "html5"
+  ],
+  "author": "tonylua@sina.com",
+  "license": "ISC",
+  "homepage": "https://github.com/tonylua/mobile-utils",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}

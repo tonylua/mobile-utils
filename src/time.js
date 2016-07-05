@@ -1,4 +1,4 @@
-import Evn from env;
+import Evn from './env';
 
 const
 	_timezone = (new Date).getTimezoneOffset(),
