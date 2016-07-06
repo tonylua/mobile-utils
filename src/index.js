@@ -46,6 +46,10 @@ import {
 	write_CSS,
 } from './utils';
 
+/**
+ * the entry point
+ * @type {Object}
+ */
 export default const mobile-utils = {
     env,
     lang: {
