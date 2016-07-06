@@ -1,8 +1,8 @@
 import {trim} from './format';
 
-export const hasClass = (obj, clsName) => (new RegExp('(^|\\s)+(' + clsName + ')(\\s|$)+', 'g')).test(obj.className);
+export const has_class = (obj, clsName) => (new RegExp('(^|\\s)+(' + clsName + ')(\\s|$)+', 'g')).test(obj.className);
 
-export const removeClass = (obj, clsName) => {
+export const remove_class = (obj, clsName) => {
     if (typeof obj === 'string') {
         try {
             obj = document.querySelector(obj);
@@ -15,17 +15,17 @@ export const removeClass = (obj, clsName) => {
     re = null;
 };
 
-export const addClass = (obj, clsName) => {
+export const add_class = (obj, clsName) => {
     if (typeof obj === 'string') {
         try {
             obj = document.querySelector(obj);
         } catch (ex) {}
     }
-    removeClass(obj, clsName);
+    remove_class(obj, clsName);
     obj.className = trim(obj.className + ' ' + clsName);
 };
 
-export const getRealStyle = (object=null, styleName=null) => {
+export const real_style = (object=null, styleName=null) => {
     if (!object || !styleName) return;
     let rtn = '';
     try {
@@ -38,12 +38,12 @@ export const getRealStyle = (object=null, styleName=null) => {
     return rtn.replace(/px$/, '');
 };
 
-export const appendHTML = (dom, html) => dom.insertAdjacentHTML('beforeEnd', html);
+export const append_HTML = (dom, html) => dom.insertAdjacentHTML('beforeEnd', html);
 
-export const prependHTML = (dom, html) => dom.insertAdjacentHTML('afterBegin', html);
+export const prepend_HTML = (dom, html) => dom.insertAdjacentHTML('afterBegin', html);
 
 /*根据特征值找到一段html中其所在的tag范围*/
-export const getTagRangeFromHTMLStr = (p_featureStr, p_html) => {
+export const tag_range_from_HTML = (p_featureStr, p_html) => {
     let
     	t = p_html + '',
         p = p_featureStr,

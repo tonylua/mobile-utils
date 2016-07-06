@@ -23,8 +23,8 @@ export const knot_num = num => {
 	return `${formatedIntegral}.${decimalPart}`;
 };
 
-//格式化价格
-export const format_price = (p,fix=2)=>{
+//限制小数位
+export const format_num = (p, fix=2)=>{
 	let v = parseFloat(p);
 	return isNaN(v) ? '' : v.toFixed(fix);
 };

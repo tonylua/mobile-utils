@@ -6,7 +6,7 @@ const
         f = f.shift() + '.' + f.join('');
         return f * 1;
     },
-    Env = {
+    env = {
         ua: _ua,
         version: null,
         ios: false,
@@ -23,28 +23,28 @@ const
 
 _m = _ua.match(/MicroMessenger\/([\.0-9]+)/);
 if (_m != null) {
-    Env.weixin = true;
-    Env.wVersion = _formatV(_m[1], '.');
+    env.weixin = true;
+    env.wVersion = _formatV(_m[1], '.');
 }
 
 _m = _ua.match(/QQ\/([\d\.]+)$/);
 if (_m != null) {
-    Env.qq = true;
-    Env.qVersion = _formatV(_m[1], '.');
+    env.qq = true;
+    env.qVersion = _formatV(_m[1], '.');
 }
 
 _m = _ua.match(/i(Pod|Pad|Phone)\;?.*\sOS\s([\_0-9]+)/);
 if (_m != null) {
-    Env.ios = true;
-    Env.version = _formatV(_m[2], '_');
-    return Env;
+    env.ios = true;
+    env.version = _formatV(_m[2], '_');
+    return env;
 }
 
 _m = _ua.match(/Windows\sPhone\sOS\s([\.0-9]+)/);
 if (_m != null) {
-    Env.windows = true;
-    Env.version = _formatV(_m[1], '.');
-    return Env;
+    env.windows = true;
+    env.version = _formatV(_m[1], '.');
+    return env;
 }
 
 var bb = {
@@ -56,10 +56,10 @@ var bb = {
 for (var k in bb) {
     if (bb[k] != null) {
         _m = bb[k];
-        Env.blackberry = true;
-        Env.version = _formatV(_m[1], '.');
-        return Env;
+        env.blackberry = true;
+        env.version = _formatV(_m[1], '.');
+        return env;
     }
 }
 
-export default Env;
+export default env;
