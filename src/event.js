@@ -86,3 +86,19 @@ export const listen_select_change = (sel, callback) => {
         sel.addEventListener('click', _cbk);
     }
 };
+
+/**
+ * 判断时间是否发生在制定元素范围内
+ * @return {Boolean}
+ */
+export const is_event_on_target = targetCtx => {
+    return function(e) {
+        var tgt = e.target;
+        if ( $(tgt).is(targetCtx) ) return true;
+        while (tgt.parentElement !== null) {
+            tgt = tgt.parentElement;
+            if ( is_event_on_target(targetCtx)({target: tgt}) ) return true;
+        }
+        return false;
+    }
+};

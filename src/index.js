@@ -15,6 +15,7 @@ import {
 	on_page_rotated,
 	listen_select_change,
 	fake_click,
+    is_event_on_target,
 } from './event';
 import {
 	reverse_str,
@@ -65,6 +66,7 @@ export default const mobile-utils = {
         on_page_rotated,
         listen_select_change,
         fake_click,
+        is_event_on_target,
     },
     format: {
         reverse_str,
