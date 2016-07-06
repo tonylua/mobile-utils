@@ -1,5 +1,5 @@
 import env from './env';
-import read from '.lang';
+import read from './lang';
 import {
 	has_class,
 	add_class,
@@ -27,7 +27,7 @@ import {
 } from './format';
 import {
 	date_to_YMD,
-	time,
+	getTime,
 	today,
 	tomorrow,
 	yesterday,
@@ -50,11 +50,12 @@ import {
  * the entry point
  * @type {Object}
  */
-export default const mobile-utils = {
+
+var mobile_utils = {
     env,
     lang: {
         read
-    }
+    },
     dom: {
         has_class,
         add_class,
@@ -82,7 +83,7 @@ export default const mobile-utils = {
     },
     time: {
         date_to_YMD,
-        time,
+        getTime,
         today,
         tomorrow,
         yesterday,
@@ -101,6 +102,7 @@ export default const mobile-utils = {
         write_CSS,
     }
 };
+export default mobile_utils;
 
 //for old version only
 export const compatible = {

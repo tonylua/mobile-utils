@@ -4,11 +4,13 @@
     "jsx": true,
     "modules": true
   },
+
   "env": {
     "browser": true,
     "es6": true,
     "node": true
   },
+
   "globals": {
     "document": false,
     "escape": false,
@@ -21,8 +23,14 @@
     "expect": true,
     "sinon": true
   },
+
   "parser": "babel-eslint",
-  "plugins": [],
+
+  "plugins": [
+    
+  ],
+
   "rules": {
+    
   }
 }

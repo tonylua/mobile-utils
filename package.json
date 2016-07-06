@@ -4,9 +4,9 @@
   "description": "common utils of mobile html5 development",
   "main": "dist/mobile-utils",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js",
-    "build": "WEBPACK_ENV=build webpack",
-    "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch"
+    "build": "webpack --mode=build",
+    "dev": "webpack --progress --colors --watch --mode=dev",
+    "test": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,8 @@
     "eslint": "^3.0.1",
     "eslint-loader": "^1.4.0",
     "mocha": "^2.5.3",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "yargs": "^4.7.1"
   },
   "dependencies": {}
 }

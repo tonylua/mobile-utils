@@ -48,7 +48,6 @@ export const limit_decimal = (num, fix=2) => {
 	let v = parseFloat(num);
 	if (isNaN(v)) {
 		throw new Error(`[limit_decimal] ${num} is not a number`);
-		return '';
 	}
 	return v.toFixed(fix);
 };
@@ -78,4 +77,4 @@ export const num_pad_left = function(num, leng = 2) {
  * @param  {String} str
  * @return {String}
  */
-export const trim = str => return str.replace(/(^\s+|\s+$)/g, '');
+export const trim = str => str.replace(/(^\s+|\s+$)/g, '');

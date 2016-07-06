@@ -1,10 +1,10 @@
-const
+var
   webpack = require('webpack'),
   path = require('path'),
   libraryName = 'mobile-utils',
   outputFile = libraryName + '.js',
   UglifyJsPlugin = webpack.optimize.UglifyJsPlugin,
-  env = process.env.WEBPACK_ENV,
+  env = require('yargs').argv.mode,
   plugins = [];
 
 if (env === 'build') {

@@ -24,7 +24,7 @@ export const date_to_YMD = (date, div='-') =>
  * @param  {Object} [setting] - {偏移值 offset, 基准时间 from, 是否置为0点 zeroTime, 是否置为1月1日 clean}
  * @return {Date}
  */
-export const time = (setting={
+export const getTime = (setting={
     offset: 0, 
     zeroTime: false, 
     clean: false, 
@@ -59,21 +59,21 @@ export const time = (setting={
  * @param  {Boolean} [zeroTime=true] - 是否置为0点
  * @return {Date}
  */
-export const today = (zeroTime=true) => time({zeroTime});
+export const today = (zeroTime=true) => getTime({zeroTime});
 
 /**
  * 取得明天
  * @param  {Boolean} [zeroTime=true] - 是否置为0点
  * @return {Date}
  */
-export const tomorrow = (zeroTime=true) => time({zeroTime, offset: _aDay});
+export const tomorrow = (zeroTime=true) => getTime({zeroTime, offset: _aDay});
 
 /**
  * 取得昨天
  * @param  {Boolean} [zeroTime=true] - 是否置为0点
  * @return {Date}
  */
-export const yesterday = (zeroTime=true) => time({zeroTime, offset: -_aDay});
+export const yesterday = (zeroTime=true) => getTime({zeroTime, offset: -_aDay});
 
 /**
  * 取得一个某年某月1号0时的干净日期
@@ -81,8 +81,8 @@ export const yesterday = (zeroTime=true) => time({zeroTime, offset: -_aDay});
  * @param  {Number} [p_year=今年]
  * @return {Date}
  */
-export const get_clean_date(p_month=0, p_year=(new Date).getFullYear()) {
-    let d = time({clean: true, zeroTime: true});
+export const get_clean_date = (p_month=0, p_year=(new Date).getFullYear()) => {
+    let d = getTime({clean: true, zeroTime: true});
     d.setFullYear(p_year);
     d.setMonth(p_month);
     return d;
@@ -131,7 +131,7 @@ export const dates_of_month = (p_year, p_month=0) => {
 export const date_range = (rangeNums, from = getToday()) => {
     let 
         days = parseInt(rangeNums) * _aDay,
-        endDay = time({from, offset: days});
+        endDay = getTime({from, offset: days});
     return {
         start: from, 
         end: endDay, 
