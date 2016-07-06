@@ -62,4 +62,22 @@ for (var k in bb) {
     }
 }
 
+/**
+ * 获取移动设备型号版本等环境信息
+ * @type {Object}
+ * @default {
+        ua,
+        version,
+        ios,
+        android,
+        windows,
+        blackberry,
+        weixin,
+        wVersion,
+        qq,
+        qVersion,
+        touchSupport,
+        hashSupport
+    }
+ */
 export default env;

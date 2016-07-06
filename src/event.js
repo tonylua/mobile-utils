@@ -1,12 +1,24 @@
 import env from './env';
 import {append_HTML} from './dom';
 
+/**
+ * 监听CSS3 transition动画结束
+ * @param  {Element} dom
+ * @param  {Function} callback
+ * @return {void}
+ */
 export const on_tweened = (dom, callback) => 
     dom.addEventListener('webkitTransitionEnd', function fn(e) {
         e.currentTarget.removeEventListener('webkitTransitionEnd', fn);
         callback.call(null)
     });
 
+/**
+ * 监听页面加载
+ * @description 如果监听时已加载则直接执行回调
+ * @param  {Function} callback
+ * @return {void}
+ */
 export const on_page_loaded = callback => {
     if (/interactive|complete/.test(document.readyState)) {
         callback.call(null); /*已加载过，直接执行*/
@@ -18,15 +30,26 @@ export const on_page_loaded = callback => {
     });
 };
 
+/**
+ * 监听设备方向改变
+ * @param  {Function} callback
+ * @return {void}
+ */
 export const on_page_rotated = callback => window.addEventListener('orientationchange', callback);
 
-export const fake_click = callback => {
+/**
+ * 模拟点击事件
+ * @param  {Function} callback - 回调函数
+ * @param  {String} [domId='fakeClick'] - 模拟载体元素的id
+ * @return {void}
+ */
+export const fake_click = (callback, domId='fakeClick') => {
     append_HTML(
         document.getElementsByTagName('body')[0],
-        '<a href="javascript:void(0)" id="fakeClick" style="opacity:.01"></a>'
+        `<a href="javascript:void(0)" id="${domId}" style="opacity:.01"></a>`
     );
     let
-        $a = document.getElementById('fakeClick'),
+        $a = document.getElementById(domId),
         evt;
     $a.addEventListener("click", function(e) {
         e.preventDefault();
@@ -42,6 +65,12 @@ export const fake_click = callback => {
     $a.parentNode.removeChild($a);
 };
 
+/**
+ * 兼容性的监听select更改事件
+ * @param  {Element} sel - 目标select元素
+ * @param  {Function} callback - 回调函数
+ * @return {void}
+ */
 export const listen_select_change = (sel, callback) => {
     sel.dataset['lisOldselidx'] = sel.selectedIndex;
     var _cbk = function(e) {

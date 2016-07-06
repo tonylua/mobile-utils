@@ -1,18 +1,33 @@
-//字符串反转
+/**
+ * 字符串反转
+ * @param  {String} str
+ * @return {String}
+ */
 export const reverse_str = str => str.split('').reverse().join('');
 
-//格式化手机号等
-export const step_str = (n, step=4, needReverse=true, div=" ") => {
+/**
+ * 格式化手机号等，按位插入分隔符
+ * @param  {Number|String} target - 目标数字或字符串
+ * @param  {Number} [step=4] - 插入分隔符的相隔位数
+ * @param  {Boolean} [needReverse=true] - 是否要从右向左进行插入
+ * @param  {String} [div=" "] - 分隔符
+ * @return {String}
+ */
+export const step_str = (target, step=4, needReverse=true, div=" ") => {
 	let
-		nStr = n.toString(),
+		nStr = target.toString(),
 		rst = nStr.replace(/\s/g, ''),
-		target = needReverse ? reverse_str(rst) : rst,
+		rTarget = needReverse ? reverse_str(rst) : rst,
 		re = new RegExp('(.{'+ step +'})', 'g');
-	rst = target.replace(re, `$1${div}`);
+	rst = rTarget.replace(re, `$1${div}`);
 	return needReverse ? reverse_str(rst) : rst;
 };
 
-//添加千分位的数字分结号
+/**
+ * 添加千分位的数字分结号
+ * @param  {Number} num
+ * @return {String}
+ */
 export const knot_num = num => {
 	let
 		numParts = num.toString().split('.'),
@@ -23,11 +38,44 @@ export const knot_num = num => {
 	return `${formatedIntegral}.${decimalPart}`;
 };
 
-//限制小数位
-export const format_num = (p, fix=2)=>{
-	let v = parseFloat(p);
-	return isNaN(v) ? '' : v.toFixed(fix);
+/**
+ * 限制小数位
+ * @param  {Number} num
+ * @param  {Number} [fix=2]
+ * @return {String}
+ */
+export const limit_decimal = (num, fix=2) => {
+	let v = parseFloat(num);
+	if (isNaN(v)) {
+		throw new Error(`[limit_decimal] ${num} is not a number`);
+		return '';
+	}
+	return v.toFixed(fix);
 };
 
-//去首尾空格
+
+/**
+ * 补全数字左侧的0
+ * @param  {Number} num - 目标数字
+ * @param  {Number} [leng=2] - 最终位数
+ * @return {String}
+ */
+export const num_pad_left = function(num, leng = 2) {
+    let 
+    	lng = leng,
+    	zeroStr = '',
+    	n = num.toString();
+    while (lng--) {
+    	zeroStr += '0';
+    }
+    if (n.length < leng)
+    	return zeroStr.substr(0, leng - n.length) + n;
+    return n;
+};
+
+/**
+ * 去首尾空格
+ * @param  {String} str
+ * @return {String}
+ */
 export const trim = str => return str.replace(/(^\s+|\s+$)/g, '');
