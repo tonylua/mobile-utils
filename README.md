@@ -1,7 +1,14 @@
 # mobile-utils
 common utils of mobile html5 development
 
+## How to install
+```
+npm i mobile-utils --save
+```
 
+
+## API
+```
 <a name="mUtils"></a>
 
 ## mUtils : <code>object</code>
@@ -546,3 +553,4 @@ the entry point
 | --- | --- |
 | css字符串 | <code>String</code> | 
 
+```
