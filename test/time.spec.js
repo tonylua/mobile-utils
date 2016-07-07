@@ -10,7 +10,7 @@ describe('test format module...', ()=>{
 		    tomorrow,
 		    yesterday,
 		    get_clean_date,
-		    dates_of_month,
+		    calender,
 		    date_range,
 		    is_leap_year,
 		} = mUtils.time;
@@ -66,8 +66,33 @@ describe('test format module...', ()=>{
 
 	describe('test get_clean_date', ()=>{
 		it('should get a begining day of a month', ()=>{
-			expect( get_clean_date(3, 1982).toISOString().substring(0, 10) ).to.equal('1982-03-01');
-			expect( get_clean_date(5, 1982).toISOString().substring(0, 10) ).to.equal('1982-05-01');
+			expect( get_clean_date(3, 1982).toLocaleString().substring(0, 10) ).to.equal('1982-03-01');
+			expect( get_clean_date(5, 1982).toLocaleString().substring(0, 10) ).to.equal('1982-05-01');
+		});
+	});
+
+	describe('test calender', ()=>{
+		it('should get a calender of a month', ()=>{
+			let cale = calender(2, 2016);
+			expect(cale).to.have.length(5);
+			expect(new Date(cale[3][0]).getDay()).to.equal(0);
+			expect(new Date(cale[4][1]).getDate()).to.equal(29);
+		});
+	});
+
+	describe('test date_range', ()=>{
+		it('should get range from a date', ()=>{
+			let range = date_range(2, yesterday());
+			expect(range.end.toLocaleString()).to.equal(tomorrow().toLocaleString());
+		});
+	});
+
+	describe('test is_leap_year', ()=>{
+		it('should check if the given year is leap', ()=>{
+			expect(is_leap_year(2016)).to.equal(true);
+			expect(is_leap_year(2000)).to.equal(true);
+			expect(is_leap_year(2005)).to.equal(false);
+			expect(is_leap_year(2006)).to.equal(false);
 		});
 	});
 

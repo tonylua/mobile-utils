@@ -2,13 +2,18 @@ import {num_pad_left} from './format';
 import env from './env';
 
 export const
-	_timezone = (new Date).getTimezoneOffset(),
-	_tz = parseInt(_timezone / 60),
-	// _testDateIOSTrans = (env.ios || /invalid/.test((new Date((new Date).toISOString())).toString().toLowerCase())),
-    _aSecond = 1000,
+	_aSecond = 1000,
     _aMinute = 60 * _aSecond,
     _aHour = 60 * _aMinute,
     _aDay = 24 * _aHour;
+
+// export function local_date(dateStr=null) {
+//     let 
+//         d = dateStr ? new Date(dateStr) : new Date,
+//         timeOffset = d.getTimezoneOffset() * _aMinute,
+//         localDate = new Date(d.getTime() + timeOffset);
+//     return localDate;
+// }
 
 /**
  * 将字符串转化为yyyymmdd格式
@@ -83,20 +88,19 @@ export function yesterday(zeroTime=true) {return getTime({zeroTime, offset: -_aD
  * @return {Date}
  */
 export function get_clean_date(p_month=1, p_year=(new Date).getFullYear()) {
-    let d = getTime({clean: true, zeroTime: false});
-    //TODO
+    let d = getTime({clean: true, zeroTime: true});
     d.setFullYear(p_year);
     d.setMonth(p_month-1);
     return d;
 };
 
 /**
- * 取得某月中的日期
+ * 取得某月的日历
  * @param  {Number} p_year
  * @param  {Number} [p_month=1]
- * @return {Array} 星期-日期 的二维数组
+ * @return {Array} 星期-日期 的二维数组: 周日0,周一1...
  */
-export function dates_of_month(p_year, p_month=1) {
+export function calender(p_month=1, p_year=(new Date).getFullYear()) {
     let
         matrix = [
             []
@@ -107,7 +111,7 @@ export function dates_of_month(p_year, p_month=1) {
                 matrix[matrix.length] = [];
             }
         },
-        day = get_clean_date(p_month-1, p_year);
+        day = get_clean_date(p_month, p_year);
     for (var i = 0, lng = day.getDay(); i < lng; i++) {
         putDay(null);
     }
@@ -133,12 +137,12 @@ export function dates_of_month(p_year, p_month=1) {
 export function date_range(rangeNums, from = getToday()) {
     let 
         days = parseInt(rangeNums) * _aDay,
-        endDay = getTime({from, offset: days});
+        endDay = getTime({from, offset: days}),
+        arr = [from, endDay];
+    arr.sort((a,b)=>a-b);
     return {
-        start: from, 
-        end: endDay, 
-        start_str: formatDate(today), 
-        end_str: formatDate(endDay)
+        start: arr[0], 
+        end: arr[1]
     };
 };
 
@@ -149,9 +153,9 @@ export function date_range(rangeNums, from = getToday()) {
  */
 export function is_leap_year(year=null) { 
     let 
-        currY = (new Date).getFullYear()
+        currY = (new Date).getFullYear(),
         y = year || currY;
     y = parseInt(y);
     if (isNaN(y)) y = currY;
-    return (((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0)) ? 1 : 0;
+    return !!(((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0));
 };
