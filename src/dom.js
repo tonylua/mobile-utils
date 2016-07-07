@@ -5,6 +5,7 @@ import {trim} from './format';
  * @param  {Element} ele
  * @param  {String} clsName
  * @return {Boolean}
+ * @memberOf mUtils.dom
  */
 const has_class = (ele, clsName) => (new RegExp('(^|\\s)+(' + clsName + ')(\\s|$)+', 'g')).test(ele.className);
 
@@ -13,6 +14,7 @@ const has_class = (ele, clsName) => (new RegExp('(^|\\s)+(' + clsName + ')(\\s|$
  * @param  {Element} ele
  * @param  {String} clsName
  * @return {void}
+ * @memberOf mUtils.dom
  */
 function remove_class(ele, clsName) {
     if (typeof ele === 'string') {
@@ -32,6 +34,7 @@ function remove_class(ele, clsName) {
  * @param  {Element} ele
  * @param  {String} clsName
  * @return {void}
+ * @memberOf mUtils.dom
  */
 function add_class(ele, clsName) {
     if (typeof ele === 'string') {
@@ -48,6 +51,7 @@ function add_class(ele, clsName) {
  * @param  {Element} [ele=null] - 目标元素
  * @param  {String} [styleName=null] - 样式名
  * @return {String}
+ * @memberOf mUtils.dom
  */
 const real_style = (ele=null, styleName=null) => {
     if (!ele || !styleName) return;
@@ -67,6 +71,7 @@ const real_style = (ele=null, styleName=null) => {
  * @param  {Element} dom
  * @param  {String} html
  * @return {void}
+ * @memberOf mUtils.dom
  */
 const append_HTML = (dom, html) => dom.insertAdjacentHTML('beforeEnd', html);
 
@@ -75,6 +80,7 @@ const append_HTML = (dom, html) => dom.insertAdjacentHTML('beforeEnd', html);
  * @param  {Element} dom
  * @param  {String} html
  * @return {void}
+ * @memberOf mUtils.dom
  */
 const prepend_HTML = (dom, html) => dom.insertAdjacentHTML('afterBegin', html);
 
@@ -83,6 +89,7 @@ const prepend_HTML = (dom, html) => dom.insertAdjacentHTML('afterBegin', html);
  * @param  {String} p_featureStr - 特征值
  * @param  {String} p_html - 作为查找范围的html
  * @return {Object} {start, end}
+ * @memberOf mUtils.dom
  */
 const tag_range_from_HTML = (p_featureStr, p_html) => {
     let
@@ -124,7 +131,14 @@ const tag_range_from_HTML = (p_featureStr, p_html) => {
     };
 };
 
-export {
+
+export 
+/**
+ * @namespace dom
+ * @memberOf mUtils
+ * @type {Object}
+ */
+{
     has_class,
     add_class,
     remove_class,

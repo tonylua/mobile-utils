@@ -79,9 +79,12 @@ if (typeof window === 'undefined') {
     }
 } //end of else
 
+export default
 /**
  * 获取移动设备型号版本等环境信息
  * @type {Object}
+ * @namespace env
+ * @memberOf mUtils
  * @default {
         ua,
         version,
@@ -97,4 +100,4 @@ if (typeof window === 'undefined') {
         hashSupport
     }
  */
-export default env;
+env;

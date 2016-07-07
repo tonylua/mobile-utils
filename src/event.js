@@ -6,6 +6,7 @@ import {append_HTML} from './dom';
  * @param  {Element} dom
  * @param  {Function} callback
  * @return {void}
+ * @memberOf mUtils.event
  */
 const on_tweened = (dom, callback) => 
     dom.addEventListener('webkitTransitionEnd', function fn(e) {
@@ -18,6 +19,7 @@ const on_tweened = (dom, callback) =>
  * @description 如果监听时已加载则直接执行回调
  * @param  {Function} callback
  * @return {void}
+ * @memberOf mUtils.event
  */
 const on_page_loaded = callback => {
     if (/interactive|complete/.test(document.readyState)) {
@@ -34,6 +36,7 @@ const on_page_loaded = callback => {
  * 监听设备方向改变
  * @param  {Function} callback
  * @return {void}
+ * @memberOf mUtils.event
  */
 const on_page_rotated = callback => window.addEventListener('orientationchange', callback);
 
@@ -42,6 +45,7 @@ const on_page_rotated = callback => window.addEventListener('orientationchange',
  * @param  {Function} callback - 回调函数
  * @param  {String} [domId='fakeClick'] - 模拟载体元素的id
  * @return {void}
+ * @memberOf mUtils.event
  */
 const fake_click = (callback, domId='fakeClick') => {
     append_HTML(
@@ -70,6 +74,7 @@ const fake_click = (callback, domId='fakeClick') => {
  * @param  {Element} sel - 目标select元素
  * @param  {Function} callback - 回调函数
  * @return {void}
+ * @memberOf mUtils.event
  */
 const listen_select_change = (sel, callback) => {
     sel.dataset['lisOldselidx'] = sel.selectedIndex;
@@ -90,6 +95,7 @@ const listen_select_change = (sel, callback) => {
 /**
  * 判断时间是否发生在制定元素范围内
  * @return {Boolean}
+ * @memberOf mUtils.event
  */
 const is_event_on_target = targetCtx => {
     return function(e) {
@@ -103,7 +109,13 @@ const is_event_on_target = targetCtx => {
     }
 };
 
-export {
+export
+/**
+ * @namespace event
+ * @memberOf mUtils
+ * @type {Object}
+ */
+{
     on_tweened,
     on_page_loaded,
     on_page_rotated,

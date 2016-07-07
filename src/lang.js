@@ -3,6 +3,7 @@
  * @param  {String} tmpl - 文本模板，格式为 'hello{0},world{1}'
  * @param  {...String} args - 用于替换的若干参数
  * @return {String}
+ * @memberOf mUtils.lang
  */
 const read_i18n = (tmpl, ...args) => {
 	let rtn = tmpl.substr(0);
@@ -21,6 +22,12 @@ const read_i18n = (tmpl, ...args) => {
 	return rtn;
 };
 
-export {
+export 
+/**
+ * @namespace lang
+ * @memberOf mUtils
+ * @type {Object}
+ */
+{
 	read_i18n
 }

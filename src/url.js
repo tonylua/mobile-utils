@@ -22,6 +22,7 @@ function _split2(s, separator) {
  * 将query字符串转换为object
  * @param  {String} [query=当前url的query] 给定的query字符串
  * @return {Object}
+ * @memberOf mUtils.url
  */
 const query_params = (query = window.location.search.substring(1)) => {
 	if (!query) return null;
@@ -39,6 +40,7 @@ const query_params = (query = window.location.search.substring(1)) => {
 
 /**
  * 将hash部分转化为object
+ * @memberOf mUtils.url
  */
 class URLHash {
     /**
@@ -113,7 +115,13 @@ class URLHash {
     }
 };
 
-export {
+export 
+/**
+ * @namespace url
+ * @memberOf mUtils
+ * @type {Object}
+ */
+{
     query_params,
     URLHash,
 };

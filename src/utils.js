@@ -1,8 +1,9 @@
 /**
  * 检查并监听applicationCache的更新情况
  * @return {void}
+ * @memberOf mUtils.utils
  */
-export function check_appcache() {
+function check_appcache() {
 	let
 		_appCache = window.applicationCache,
     	support = !!_appCache;
@@ -24,8 +25,9 @@ export function check_appcache() {
  * 将页面移动至指定位置
  * @param  {Number} [top]
  * @return {void}
+ * @memberOf mUtils.utils
  */
-export function page_to_top(top = -1) {
+function page_to_top(top = -1) {
     document.getElementsByTagName('body')[0].scrollTop = top;
     window.scrollTo(0, top);
 };
@@ -34,8 +36,9 @@ export function page_to_top(top = -1) {
  * 在页面中动态写入css
  * @param  {String} css字符串
  * @return {void}
+ * @memberOf mUtils.utils
  */
-export function write_CSS(css) {
+function write_CSS(css) {
     var s = document.createElement('style');
     s.innerHTML = css;
     try {
@@ -45,3 +48,15 @@ export function write_CSS(css) {
     }
     document.getElementsByTagName('head')[0].appendChild(s);
 };
+
+export
+/**
+ * @namespace utils
+ * @memberOf mUtils
+ * @type {Object}
+ */
+{
+    check_appcache,
+    page_to_top,
+    write_CSS
+}

@@ -20,8 +20,9 @@ export const
  * @param  {Date} date - 目标时间
  * @param  {String} [div='-'] - 分隔符
  * @return {String}
+ * @memberOf mUtils.time
  */
-export function date_to_YMD(date, div='-') {
+function date_to_YMD(date, div='-') {
     return [date.getFullYear(), date.getMonth()+1, date.getDate()].map(num => num_pad_left(num)).join(div);
 }
 
@@ -29,8 +30,9 @@ export function date_to_YMD(date, div='-') {
  * 取得某个时间
  * @param  {Object} [setting] - {偏移值 offset, 基准时间 from, 是否置为0点 zeroTime, 是否置为1日 clean}
  * @return {Date}
+ * @memberOf mUtils.time
  */
-export function getTime(setting) {
+function getTime(setting) {
     setting = Object.assign({
         offset: 0, 
         zeroTime: false, 
@@ -64,30 +66,34 @@ export function getTime(setting) {
  * 取得当天
  * @param  {Boolean} [zeroTime=true] - 是否置为0点
  * @return {Date}
+ * @memberOf mUtils.time
  */
-export function today(zeroTime=true) {return getTime({zeroTime});}
+function today(zeroTime=true) {return getTime({zeroTime});}
 
 /**
  * 取得明天
  * @param  {Boolean} [zeroTime=true] - 是否置为0点
  * @return {Date}
+ * @memberOf mUtils.time
  */
-export function tomorrow(zeroTime=true) {return getTime({zeroTime, offset: _aDay});}
+function tomorrow(zeroTime=true) {return getTime({zeroTime, offset: _aDay});}
 
 /**
  * 取得昨天
  * @param  {Boolean} [zeroTime=true] - 是否置为0点
  * @return {Date}
+ * @memberOf mUtils.time
  */
-export function yesterday(zeroTime=true) {return getTime({zeroTime, offset: -_aDay});}
+function yesterday(zeroTime=true) {return getTime({zeroTime, offset: -_aDay});}
 
 /**
  * 取得一个某年某月1号0时的干净日期
  * @param  {Number} [p_month=1]
  * @param  {Number} [p_year=今年]
  * @return {Date}
+ * @memberOf mUtils.time
  */
-export function get_clean_date(p_month=1, p_year=(new Date).getFullYear()) {
+function get_clean_date(p_month=1, p_year=(new Date).getFullYear()) {
     let d = getTime({clean: true, zeroTime: true});
     d.setFullYear(p_year);
     d.setMonth(p_month-1);
@@ -99,8 +105,9 @@ export function get_clean_date(p_month=1, p_year=(new Date).getFullYear()) {
  * @param  {Number} p_year
  * @param  {Number} [p_month=1]
  * @return {Array} 星期-日期 的二维数组: 周日0,周一1...
+ * @memberOf mUtils.time
  */
-export function calender(p_month=1, p_year=(new Date).getFullYear()) {
+function calender(p_month=1, p_year=(new Date).getFullYear()) {
     let
         matrix = [
             []
@@ -133,8 +140,9 @@ export function calender(p_month=1, p_year=(new Date).getFullYear()) {
  * @param  {Number} rangeNums - 开始到结束的天数
  * @param  {Date} [from=今天] - 基准日期
  * @return {Object}
+ * @memberOf mUtils.time
  */
-export function date_range(rangeNums, from = getToday()) {
+function date_range(rangeNums, from = getToday()) {
     let 
         days = parseInt(rangeNums) * _aDay,
         endDay = getTime({from, offset: days}),
@@ -150,8 +158,9 @@ export function date_range(rangeNums, from = getToday()) {
  * 是否闰年
  * @param  {Number} [year=null] 年份
  * @return {Boolean}
+ * @memberOf mUtils.time
  */
-export function is_leap_year(year=null) { 
+function is_leap_year(year=null) { 
     let 
         currY = (new Date).getFullYear(),
         y = year || currY;
@@ -159,3 +168,21 @@ export function is_leap_year(year=null) {
     if (isNaN(y)) y = currY;
     return !!(((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0));
 };
+
+export
+/**
+ * @namespace time
+ * @memberOf mUtils
+ * @type {Object}
+ */
+{
+    date_to_YMD,
+    getTime,
+    today,
+    tomorrow,
+    yesterday,
+    get_clean_date,
+    calender,
+    date_range,
+    is_leap_year,
+}

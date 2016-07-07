@@ -9,6 +9,7 @@ import * as utils from './utils';
 
 /**
  * the entry point
+ * @namespace mUtils
  * @type {Object}
  */
 const mUtils = {

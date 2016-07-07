@@ -2,6 +2,7 @@
  * 字符串反转
  * @param  {String} str
  * @return {String}
+ * @memberOf mUtils.format
  */
 const reverse_str = str => str.split('').reverse().join('');
 
@@ -12,6 +13,7 @@ const reverse_str = str => str.split('').reverse().join('');
  * @param  {Boolean} [needReverse=true] - 是否要从右向左进行插入
  * @param  {String} [div=" "] - 分隔符
  * @return {String}
+ * @memberOf mUtils.format
  */
 const step_str = (target, step=4, needReverse=false, div=" ") => {
 	let
@@ -29,6 +31,7 @@ const step_str = (target, step=4, needReverse=false, div=" ") => {
  * @param  {Number} num - 目标数字
  * @param  {Number} [fix=null] - 如果同时要对小数限制位数则指定其位数
  * @return {String}
+ * @memberOf mUtils.format
  */
 const knot_num = (num, fix=null) => {
 	let n = num;
@@ -51,6 +54,7 @@ const knot_num = (num, fix=null) => {
  * @param  {Number} num
  * @param  {Number} [fix=2]
  * @return {String}
+ * @memberOf mUtils.format
  */
 const limit_decimal = (num, fix=2) => {
 	let v = parseFloat(num);
@@ -66,6 +70,7 @@ const limit_decimal = (num, fix=2) => {
  * @param  {Number} num - 目标数字
  * @param  {Number} [leng=2] - 最终位数
  * @return {String}
+ * @memberOf mUtils.format
  */
 const num_pad_left = function(num, leng = 2) {
     let 
@@ -84,10 +89,17 @@ const num_pad_left = function(num, leng = 2) {
  * 去首尾空格
  * @param  {String} str
  * @return {String}
+ * @memberOf mUtils.format
  */
 const trim = str => str.replace(/(^\s+|\s+$)/g, '');
 
-export {
+export 
+/**
+ * @namespace format
+ * @memberOf mUtils
+ * @type {Object}
+ */
+{
     reverse_str,
     step_str,
     knot_num,
