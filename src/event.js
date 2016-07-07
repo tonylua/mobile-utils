@@ -7,7 +7,7 @@ import {append_HTML} from './dom';
  * @param  {Function} callback
  * @return {void}
  */
-export const on_tweened = (dom, callback) => 
+const on_tweened = (dom, callback) => 
     dom.addEventListener('webkitTransitionEnd', function fn(e) {
         e.currentTarget.removeEventListener('webkitTransitionEnd', fn);
         callback.call(null)
@@ -19,7 +19,7 @@ export const on_tweened = (dom, callback) =>
  * @param  {Function} callback
  * @return {void}
  */
-export const on_page_loaded = callback => {
+const on_page_loaded = callback => {
     if (/interactive|complete/.test(document.readyState)) {
         callback.call(null); /*已加载过，直接执行*/
         return;
@@ -35,7 +35,7 @@ export const on_page_loaded = callback => {
  * @param  {Function} callback
  * @return {void}
  */
-export const on_page_rotated = callback => window.addEventListener('orientationchange', callback);
+const on_page_rotated = callback => window.addEventListener('orientationchange', callback);
 
 /**
  * 模拟点击事件
@@ -43,7 +43,7 @@ export const on_page_rotated = callback => window.addEventListener('orientationc
  * @param  {String} [domId='fakeClick'] - 模拟载体元素的id
  * @return {void}
  */
-export const fake_click = (callback, domId='fakeClick') => {
+const fake_click = (callback, domId='fakeClick') => {
     append_HTML(
         document.getElementsByTagName('body')[0],
         `<a href="javascript:void(0)" id="${domId}" style="opacity:.01"></a>`
@@ -71,7 +71,7 @@ export const fake_click = (callback, domId='fakeClick') => {
  * @param  {Function} callback - 回调函数
  * @return {void}
  */
-export const listen_select_change = (sel, callback) => {
+const listen_select_change = (sel, callback) => {
     sel.dataset['lisOldselidx'] = sel.selectedIndex;
     var _cbk = function(e) {
         if (parseInt(sel.dataset['lisOldselidx']) != sel.selectedIndex) {
@@ -91,7 +91,7 @@ export const listen_select_change = (sel, callback) => {
  * 判断时间是否发生在制定元素范围内
  * @return {Boolean}
  */
-export const is_event_on_target = targetCtx => {
+const is_event_on_target = targetCtx => {
     return function(e) {
         var tgt = e.target;
         if ( $(tgt).is(targetCtx) ) return true;
@@ -101,4 +101,13 @@ export const is_event_on_target = targetCtx => {
         }
         return false;
     }
+};
+
+export {
+    on_tweened,
+    on_page_loaded,
+    on_page_rotated,
+    listen_select_change,
+    fake_click,
+    is_event_on_target,
 };

@@ -25,7 +25,7 @@ export function check_appcache() {
  * @param  {Number} [top]
  * @return {void}
  */
-export const page_to_top = (top = -1) => {
+export function page_to_top(top = -1) {
     document.getElementsByTagName('body')[0].scrollTop = top;
     window.scrollTo(0, top);
 };
@@ -35,7 +35,7 @@ export const page_to_top = (top = -1) => {
  * @param  {String} css字符串
  * @return {void}
  */
-export const write_CSS = css => {
+export function write_CSS(css) {
     var s = document.createElement('style');
     s.innerHTML = css;
     try {

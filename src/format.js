@@ -3,7 +3,7 @@
  * @param  {String} str
  * @return {String}
  */
-export const reverse_str = str => str.split('').reverse().join('');
+const reverse_str = str => str.split('').reverse().join('');
 
 /**
  * 格式化手机号等，按位插入分隔符
@@ -13,29 +13,37 @@ export const reverse_str = str => str.split('').reverse().join('');
  * @param  {String} [div=" "] - 分隔符
  * @return {String}
  */
-export const step_str = (target, step=4, needReverse=true, div=" ") => {
+const step_str = (target, step=4, needReverse=false, div=" ") => {
 	let
 		nStr = target.toString(),
 		rst = nStr.replace(/\s/g, ''),
 		rTarget = needReverse ? reverse_str(rst) : rst,
 		re = new RegExp('(.{'+ step +'})', 'g');
 	rst = rTarget.replace(re, `$1${div}`);
-	return needReverse ? reverse_str(rst) : rst;
+	rst = needReverse ? reverse_str(rst) : rst;
+	return trim(rst);
 };
 
 /**
  * 添加千分位的数字分结号
- * @param  {Number} num
+ * @param  {Number} num - 目标数字
+ * @param  {Number} [fix=null] - 如果同时要对小数限制位数则指定其位数
  * @return {String}
  */
-export const knot_num = num => {
+const knot_num = (num, fix=null) => {
+	let n = num;
+	if (fix !== null && fix >= 0) {
+		n = limit_decimal(n, fix);
+	}
 	let
-		numParts = num.toString().split('.'),
+		numParts = n.toString().split('.'),
 		integralPart = numParts[0],
 		decimalPart = numParts.length > 1 ? numParts[1] : null,
-		formatedIntegral = step_str(integralPart, 3, true, ',');
+		formatedIntegral = step_str(integralPart, 3, true, ','),
+		rst;
 	if (!decimalPart) return formatedIntegral;
-	return `${formatedIntegral}.${decimalPart}`;
+	rst = `${formatedIntegral}.${decimalPart}`;
+	return rst;
 };
 
 /**
@@ -44,7 +52,7 @@ export const knot_num = num => {
  * @param  {Number} [fix=2]
  * @return {String}
  */
-export const limit_decimal = (num, fix=2) => {
+const limit_decimal = (num, fix=2) => {
 	let v = parseFloat(num);
 	if (isNaN(v)) {
 		throw new Error(`[limit_decimal] ${num} is not a number`);
@@ -59,7 +67,7 @@ export const limit_decimal = (num, fix=2) => {
  * @param  {Number} [leng=2] - 最终位数
  * @return {String}
  */
-export const num_pad_left = function(num, leng = 2) {
+const num_pad_left = function(num, leng = 2) {
     let 
     	lng = leng,
     	zeroStr = '',
@@ -77,4 +85,13 @@ export const num_pad_left = function(num, leng = 2) {
  * @param  {String} str
  * @return {String}
  */
-export const trim = str => str.replace(/(^\s+|\s+$)/g, '');
+const trim = str => str.replace(/(^\s+|\s+$)/g, '');
+
+export {
+    reverse_str,
+    step_str,
+    knot_num,
+    num_pad_left,
+    limit_decimal,
+    trim,
+};

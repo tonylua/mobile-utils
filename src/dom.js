@@ -6,7 +6,7 @@ import {trim} from './format';
  * @param  {String} clsName
  * @return {Boolean}
  */
-export const has_class = (ele, clsName) => (new RegExp('(^|\\s)+(' + clsName + ')(\\s|$)+', 'g')).test(ele.className);
+const has_class = (ele, clsName) => (new RegExp('(^|\\s)+(' + clsName + ')(\\s|$)+', 'g')).test(ele.className);
 
 /**
  * 删除className
@@ -14,7 +14,7 @@ export const has_class = (ele, clsName) => (new RegExp('(^|\\s)+(' + clsName + '
  * @param  {String} clsName
  * @return {void}
  */
-export const remove_class = (ele, clsName) => {
+function remove_class(ele, clsName) {
     if (typeof ele === 'string') {
         try {
             ele = document.querySelector(ele);
@@ -33,7 +33,7 @@ export const remove_class = (ele, clsName) => {
  * @param  {String} clsName
  * @return {void}
  */
-export const add_class = (ele, clsName) => {
+function add_class(ele, clsName) {
     if (typeof ele === 'string') {
         try {
             ele = document.querySelector(ele);
@@ -49,7 +49,7 @@ export const add_class = (ele, clsName) => {
  * @param  {String} [styleName=null] - 样式名
  * @return {String}
  */
-export const real_style = (ele=null, styleName=null) => {
+const real_style = (ele=null, styleName=null) => {
     if (!ele || !styleName) return;
     let rtn = '';
     try {
@@ -63,20 +63,20 @@ export const real_style = (ele=null, styleName=null) => {
 };
 
 /**
- * 在制定元素内的最末插入html
+ * 在指定元素内的最末插入html
  * @param  {Element} dom
  * @param  {String} html
  * @return {void}
  */
-export const append_HTML = (dom, html) => dom.insertAdjacentHTML('beforeEnd', html);
+const append_HTML = (dom, html) => dom.insertAdjacentHTML('beforeEnd', html);
 
 /**
- * 在制定元素内的开始插入html
+ * 在指定元素内的开始插入html
  * @param  {Element} dom
  * @param  {String} html
  * @return {void}
  */
-export const prepend_HTML = (dom, html) => dom.insertAdjacentHTML('afterBegin', html);
+const prepend_HTML = (dom, html) => dom.insertAdjacentHTML('afterBegin', html);
 
 /**
  * 根据特征值找到一段html中其所在的tag范围
@@ -84,13 +84,14 @@ export const prepend_HTML = (dom, html) => dom.insertAdjacentHTML('afterBegin', 
  * @param  {String} p_html - 作为查找范围的html
  * @return {Object} {start, end}
  */
-export const tag_range_from_HTML = (p_featureStr, p_html) => {
+const tag_range_from_HTML = (p_featureStr, p_html) => {
     let
     	t = p_html + '',
         p = p_featureStr,
         eStart = t.indexOf(p),
         eEnd = null,
         temp = null,
+        tagMth = null,
         tagName = null,
         closeTag = null,
         m = null;
@@ -100,7 +101,8 @@ export const tag_range_from_HTML = (p_featureStr, p_html) => {
     temp = t.substr(0, eStart + p.length);
     eStart = temp.lastIndexOf('<');
     temp = t.substr(eStart);
-    tagName = temp.match(/^\<([a-zA-Z]+)[\s\>]/)[1];
+    tagMth = temp.match(/^\<([a-zA-Z1-6]+)[\s\>]/);
+    tagName = tagMth[1];
     if (new RegExp('^\\<' + tagName + '[^\\>]*\\/\\>').test(temp)) { /* 直接关闭 <tag /> */
         closeTag = '/>';
         eEnd = eStart + temp.indexOf(closeTag) + closeTag.length;
@@ -120,4 +122,14 @@ export const tag_range_from_HTML = (p_featureStr, p_html) => {
         start: eStart,
         end: eEnd
     };
+};
+
+export {
+    has_class,
+    add_class,
+    remove_class,
+    real_style,
+    append_HTML,
+    prepend_HTML,
+    tag_range_from_HTML,
 };

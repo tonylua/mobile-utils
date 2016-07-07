@@ -1,9 +1,29 @@
 /**
+ * @private
+ */
+function _map2query(q, separator) {
+    let
+        u = encodeURIComponent,
+        k,
+        r = [],
+        d = separator ? separator : '&';
+    for (k in q) r.push(u(k) + '=' + u(q[k]));
+    return r.join(d);
+}
+/**
+ * @private
+ */
+function _split2(s, separator) {
+    let i = s.indexOf(separator);
+    return i == -1 ? [s, ''] : [s.substring(0, i), s.substring(i + 1)];
+}
+
+/**
  * 将query字符串转换为object
  * @param  {String} [query=当前url的query] 给定的query字符串
  * @return {Object}
  */
-export const query_params = (query = window.location.search.substring(1)) => {
+const query_params = (query = window.location.search.substring(1)) => {
 	if (!query) return false;
     let obj = {};
 	query.split('&').forEach(function(params) {
@@ -20,7 +40,7 @@ export const query_params = (query = window.location.search.substring(1)) => {
 /**
  * 将hash部分转化为object
  */
-export class URLHash {
+class URLHash {
     /**
      * @constructor
      * @param  {String} [href=当前URL的hash]
@@ -33,7 +53,7 @@ export class URLHash {
             h = href,
             s = separator,
             uArr = _split2(h, hashChar),
-            href_part = uArr[0],
+            // href_part = uArr[0],
             hash_part = uArr[1];
         this.map = {};
         this.sign = s;
@@ -92,17 +112,7 @@ export class URLHash {
     }
 };
 
-
-function _map2query(q, separator) {
-    let
-        u = encodeURIComponent,
-        k,
-        r = [],
-        d = separator ? separator : '&';
-    for (k in q) r.push(u(k) + '=' + u(q[k]));
-    return r.join(d);
-}
-function _split2(s, separator) {
-    let i = s.indexOf(separator);
-    return i == -1 ? [s, ''] : [s.substring(0, i), s.substring(i + 1)];
-}
+export {
+    query_params,
+    URLHash,
+};

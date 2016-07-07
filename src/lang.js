@@ -4,7 +4,7 @@
  * @param  {...String} args - 用于替换的若干参数
  * @return {String}
  */
-export const read = (tmpl, ...args) => {
+const read_i18n = (tmpl, ...args) => {
 	let rtn = tmpl.substr(0);
 	if (args.length) {
 		let flagArr = tmpl.match(/\{\d+\}/g); //{1},{0},{2}...
@@ -19,4 +19,8 @@ export const read = (tmpl, ...args) => {
 		}
 	}
 	return rtn;
+};
+
+export {
+	read_i18n
 }
