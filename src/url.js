@@ -24,7 +24,7 @@ function _split2(s, separator) {
  * @return {Object}
  */
 const query_params = (query = window.location.search.substring(1)) => {
-	if (!query) return false;
+	if (!query) return null;
     let obj = {};
 	query.split('&').forEach(function(params) {
 		let 
@@ -56,7 +56,8 @@ class URLHash {
             // href_part = uArr[0],
             hash_part = uArr[1];
         this.map = {};
-        this.sign = s;
+        this.separator = separator;
+        this.hashChar = hashChar;
         if (hash_part) {
             let arr = hash_part.split(s);
             for (let i = 0; i < arr.length; i++) {
@@ -108,7 +109,7 @@ class URLHash {
         return _map2query(m2, "&");
     }
     clone() {
-        return new hu('foo#' + this.toString(), this.sign);
+        return new URLHash('foo#' + this.toString(), this.hashChar, this.separator);
     }
 };
 
