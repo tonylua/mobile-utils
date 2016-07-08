@@ -1,13 +1,29 @@
 # mobile-utils
 common utils of mobile html5 development
 
-## How to install
+## 1. How to install
 ```
 npm i mobile-utils --save
 ```
 
+## 2. How to use
+```js
+//in requirejs config:
+require.config({
+	paths: {
+		"mobile-utils": "YOUR_PATH/mobile-utils.min",
+		...
+	},
+	...
+});
 
-## API
+//in page
+import mUtils from 'mobile-utils';
+...
+mUtils.format.limit_decimal(someNum)
+```
+
+## 3. API
 <a name="mUtils"></a>
 
 ## mUtils : <code>object</code>
@@ -58,7 +74,7 @@ the entry point
     * [.utils](#mUtils.utils) : <code>object</code>
         * [.check_appcache()](#mUtils.utils.check_appcache) ⇒ <code>void</code>
         * [.page_to_top([top])](#mUtils.utils.page_to_top) ⇒ <code>void</code>
-        * [.write_CSS(css字符串)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
+        * [.write_CSS(css)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
 
 <a name="mUtils.dom"></a>
 
@@ -522,7 +538,7 @@ the entry point
 * [.utils](#mUtils.utils) : <code>object</code>
     * [.check_appcache()](#mUtils.utils.check_appcache) ⇒ <code>void</code>
     * [.page_to_top([top])](#mUtils.utils.page_to_top) ⇒ <code>void</code>
-    * [.write_CSS(css字符串)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
+    * [.write_CSS(css)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
 
 <a name="mUtils.utils.check_appcache"></a>
 
@@ -543,12 +559,12 @@ the entry point
 
 <a name="mUtils.utils.write_CSS"></a>
 
-#### utils.write_CSS(css字符串) ⇒ <code>void</code>
+#### utils.write_CSS(css) ⇒ <code>void</code>
 在页面中动态写入css
 
 **Kind**: static method of <code>[utils](#mUtils.utils)</code>  
 
-| Param | Type |
-| --- | --- |
-| css字符串 | <code>String</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| css | <code>String</code> | css字符串 |
 

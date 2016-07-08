@@ -34,7 +34,7 @@ function page_to_top(top = -1) {
 
 /**
  * 在页面中动态写入css
- * @param  {String} css字符串
+ * @param  {String} css - css字符串
  * @return {void}
  * @memberOf mUtils.utils
  */
