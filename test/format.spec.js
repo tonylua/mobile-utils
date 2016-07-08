@@ -51,6 +51,8 @@ describe('test format module...', ()=>{
 		it('should limit the decimal part of a number', ()=>{
 			expect( limit_decimal(102) ).to.equal('102.00');
 			expect( limit_decimal(102.339) ).to.equal('102.34');
+			expect( limit_decimal(102.) ).to.equal('102.00');
+			expect( limit_decimal('102.') ).to.equal('102.00');
 		});
 	});
 
