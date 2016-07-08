@@ -23,7 +23,9 @@ const step_str = (target, step=4, needReverse=false, div=" ") => {
 		re = new RegExp('(.{'+ step +'})', 'g');
 	rst = rTarget.replace(re, `$1${div}`);
 	rst = needReverse ? reverse_str(rst) : rst;
-	return trim(rst);
+	rst = trim(rst);
+	rst = rst.replace(new RegExp('^\\' + div), '');
+	return rst;
 };
 
 /**

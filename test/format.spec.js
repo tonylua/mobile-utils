@@ -35,6 +35,7 @@ describe('test format module...', ()=>{
 			expect( knot_num(1112) ).to.equal('1,112');
 			expect( knot_num(1112.33621) ).to.equal('1,112.33621');
 			expect( knot_num(1112.33621, 2) ).to.equal('1,112.34');
+			expect( knot_num(112.33621, 2) ).to.equal('112.34');
 		});
 	});
 
