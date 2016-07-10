@@ -47,7 +47,7 @@ the entry point
         * [.on_page_rotated(callback)](#mUtils.event.on_page_rotated) ⇒ <code>void</code>
         * [.fake_click(callback, [domId])](#mUtils.event.fake_click) ⇒ <code>void</code>
         * [.listen_select_change(sel, callback)](#mUtils.event.listen_select_change) ⇒ <code>void</code>
-        * [.is_event_on_target()](#mUtils.event.is_event_on_target) ⇒ <code>Boolean</code>
+        * [.is_event_on_target(targetDom)](#mUtils.event.is_event_on_target) ⇒ <code>Boolean</code>
     * [.format](#mUtils.format) : <code>object</code>
         * [.reverse_str(str)](#mUtils.format.reverse_str) ⇒ <code>String</code>
         * [.step_str(target, [step], [needReverse], [div])](#mUtils.format.step_str) ⇒ <code>String</code>
@@ -70,6 +70,12 @@ the entry point
     * [.url](#mUtils.url) : <code>object</code>
         * [.URLHash](#mUtils.url.URLHash)
             * [new URLHash([href], [hashChar], [separator])](#new_mUtils.url.URLHash_new)
+            * [.get(key)](#mUtils.url.URLHash+get) ⇒ <code>String</code>
+            * [.put(key, value)](#mUtils.url.URLHash+put) ⇒ <code>void</code>
+            * [.putAll(keyValues)](#mUtils.url.URLHash+putAll) ⇒ <code>void</code>
+            * [.remove(key)](#mUtils.url.URLHash+remove) ⇒ <code>void</code>
+            * [.toString()](#mUtils.url.URLHash+toString) ⇒ <code>String</code>
+            * [.clone()](#mUtils.url.URLHash+clone) ⇒ <code>URLHash</code>
         * [.query_params([query])](#mUtils.url.query_params) ⇒ <code>Object</code>
     * [.utils](#mUtils.utils) : <code>object</code>
         * [.check_appcache()](#mUtils.utils.check_appcache) ⇒ <code>void</code>
@@ -206,7 +212,7 @@ the entry point
     * [.on_page_rotated(callback)](#mUtils.event.on_page_rotated) ⇒ <code>void</code>
     * [.fake_click(callback, [domId])](#mUtils.event.fake_click) ⇒ <code>void</code>
     * [.listen_select_change(sel, callback)](#mUtils.event.listen_select_change) ⇒ <code>void</code>
-    * [.is_event_on_target()](#mUtils.event.is_event_on_target) ⇒ <code>Boolean</code>
+    * [.is_event_on_target(targetDom)](#mUtils.event.is_event_on_target) ⇒ <code>Boolean</code>
 
 <a name="mUtils.event.on_tweened"></a>
 
@@ -268,10 +274,15 @@ the entry point
 
 <a name="mUtils.event.is_event_on_target"></a>
 
-#### event.is_event_on_target() ⇒ <code>Boolean</code>
-判断时间是否发生在制定元素范围内
+#### event.is_event_on_target(targetDom) ⇒ <code>Boolean</code>
+判断时间是否发生在指定元素范围内
 
 **Kind**: static method of <code>[event](#mUtils.event)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| targetDom | <code>Element</code> | 指定元素 |
+
 <a name="mUtils.format"></a>
 
 ### mUtils.format : <code>object</code>
@@ -501,6 +512,12 @@ the entry point
 * [.url](#mUtils.url) : <code>object</code>
     * [.URLHash](#mUtils.url.URLHash)
         * [new URLHash([href], [hashChar], [separator])](#new_mUtils.url.URLHash_new)
+        * [.get(key)](#mUtils.url.URLHash+get) ⇒ <code>String</code>
+        * [.put(key, value)](#mUtils.url.URLHash+put) ⇒ <code>void</code>
+        * [.putAll(keyValues)](#mUtils.url.URLHash+putAll) ⇒ <code>void</code>
+        * [.remove(key)](#mUtils.url.URLHash+remove) ⇒ <code>void</code>
+        * [.toString()](#mUtils.url.URLHash+toString) ⇒ <code>String</code>
+        * [.clone()](#mUtils.url.URLHash+clone) ⇒ <code>URLHash</code>
     * [.query_params([query])](#mUtils.url.query_params) ⇒ <code>Object</code>
 
 <a name="mUtils.url.URLHash"></a>
@@ -509,9 +526,21 @@ the entry point
 将hash部分转化为object
 
 **Kind**: static class of <code>[url](#mUtils.url)</code>  
+
+* [.URLHash](#mUtils.url.URLHash)
+    * [new URLHash([href], [hashChar], [separator])](#new_mUtils.url.URLHash_new)
+    * [.get(key)](#mUtils.url.URLHash+get) ⇒ <code>String</code>
+    * [.put(key, value)](#mUtils.url.URLHash+put) ⇒ <code>void</code>
+    * [.putAll(keyValues)](#mUtils.url.URLHash+putAll) ⇒ <code>void</code>
+    * [.remove(key)](#mUtils.url.URLHash+remove) ⇒ <code>void</code>
+    * [.toString()](#mUtils.url.URLHash+toString) ⇒ <code>String</code>
+    * [.clone()](#mUtils.url.URLHash+clone) ⇒ <code>URLHash</code>
+
 <a name="new_mUtils.url.URLHash_new"></a>
 
 ##### new URLHash([href], [hashChar], [separator])
+构造方法
+
 
 | Param | Type | Default |
 | --- | --- | --- |
@@ -519,6 +548,63 @@ the entry point
 | [hashChar] | <code>String</code> | <code>&#x27;#&#x27;</code> | 
 | [separator] | <code>String</code> | <code>&quot;&amp;&quot;</code> | 
 
+<a name="mUtils.url.URLHash+get"></a>
+
+##### urlHash.get(key) ⇒ <code>String</code>
+取得某个值
+
+**Kind**: instance method of <code>[URLHash](#mUtils.url.URLHash)</code>  
+
+| Param | Type |
+| --- | --- |
+| key | <code>String</code> | 
+
+<a name="mUtils.url.URLHash+put"></a>
+
+##### urlHash.put(key, value) ⇒ <code>void</code>
+放置新值
+
+**Kind**: instance method of <code>[URLHash](#mUtils.url.URLHash)</code>  
+
+| Param | Type |
+| --- | --- |
+| key | <code>String</code> | 
+| value | <code>Any</code> | 
+
+<a name="mUtils.url.URLHash+putAll"></a>
+
+##### urlHash.putAll(keyValues) ⇒ <code>void</code>
+一次性设置多个值
+
+**Kind**: instance method of <code>[URLHash](#mUtils.url.URLHash)</code>  
+
+| Param | Type |
+| --- | --- |
+| keyValues | <code>Object</code> | 
+
+<a name="mUtils.url.URLHash+remove"></a>
+
+##### urlHash.remove(key) ⇒ <code>void</code>
+删除某个值
+
+**Kind**: instance method of <code>[URLHash](#mUtils.url.URLHash)</code>  
+
+| Param | Type |
+| --- | --- |
+| key | <code>String</code> | 
+
+<a name="mUtils.url.URLHash+toString"></a>
+
+##### urlHash.toString() ⇒ <code>String</code>
+转换为字符串
+
+**Kind**: instance method of <code>[URLHash](#mUtils.url.URLHash)</code>  
+<a name="mUtils.url.URLHash+clone"></a>
+
+##### urlHash.clone() ⇒ <code>URLHash</code>
+克隆一个实例
+
+**Kind**: instance method of <code>[URLHash](#mUtils.url.URLHash)</code>  
 <a name="mUtils.url.query_params"></a>
 
 #### url.query_params([query]) ⇒ <code>Object</code>

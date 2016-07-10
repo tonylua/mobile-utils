@@ -44,6 +44,7 @@ const query_params = (query = window.location.search.substring(1)) => {
  */
 class URLHash {
     /**
+     * 构造方法
      * @constructor
      * @param  {String} [href=当前URL的hash]
      * @param  {String} [hashChar='#']
@@ -85,17 +86,38 @@ class URLHash {
         };
         this.put('_hashfoo_', Math.random());
     } //end of constructor
-
+    /**
+     * 取得某个值
+     * @param  {String} key
+     * @return {String}
+     */
     get(key) {
         return this.map[key] || null;
     }
+    /**
+     * 放置新值
+     * @param  {String} key
+     * @param  {Any} value
+     * @return {void}
+     */
     put(key, value) {
         this.map[key] = value;
     }
-    putAll(m) {
-        if (typeof(m) == 'object')
-            for (let item in m) this.map[item] = m[item];
+    /**
+     * 一次性设置多个值
+     * @param  {Object} keyValues
+     * @return {void}
+     */
+    putAll(keyValues) {
+        if (typeof(keyValues) == 'object')
+            for (let item in keyValues)
+                this.map[item] = keyValues[item];
     }
+    /**
+     * 删除某个值
+     * @param  {String} key
+     * @return {void}
+     */
     remove(key) {
         if (this.map[key]) {
             let newMap = {};
@@ -104,12 +126,20 @@ class URLHash {
             this.map = newMap;
         }
     }
+    /**
+     * 转换为字符串
+     * @return {String}
+     */
     toString() {
         let m2 = {};
         for (let m in this.map)
             if (m != '_hashfoo_') m2[m] = this.map[m];
         return _map2query(m2, "&");
     }
+    /**
+     * 克隆一个实例
+     * @return {URLHash}
+     */
     clone() {
         return new URLHash('foo#' + this.toString(), this.hashChar, this.separator);
     }
