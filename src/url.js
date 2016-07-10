@@ -113,7 +113,7 @@ class URLHash {
     clone() {
         return new URLHash('foo#' + this.toString(), this.hashChar, this.separator);
     }
-};
+}
 
 export 
 /**

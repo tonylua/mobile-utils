@@ -27,7 +27,7 @@ function remove_class(ele, clsName) {
         ele.className = ele.className.replace(re, "$1$3");
     } catch (ex) {}
     re = null;
-};
+}
 
 /**
  * 添加className
@@ -44,7 +44,7 @@ function add_class(ele, clsName) {
     }
     remove_class(ele, clsName);
     ele.className = trim(ele.className + ' ' + clsName);
-};
+}
 
 /**
  * 获取计算样式
@@ -58,8 +58,8 @@ const real_style = (ele=null, styleName=null) => {
     let rtn = '';
     try {
         rtn = (typeof(window.getComputedStyle) == 'undefined') 
-        	? ele.currentStyle[styleName] 
-        	: window.getComputedStyle(ele, null)[styleName];
+            ? ele.currentStyle[styleName] 
+            : window.getComputedStyle(ele, null)[styleName];
     } catch (ex) {
         rtn = ele.style[styleName];
     }
@@ -93,7 +93,7 @@ const prepend_HTML = (dom, html) => dom.insertAdjacentHTML('afterBegin', html);
  */
 const tag_range_from_HTML = (p_featureStr, p_html) => {
     let
-    	t = p_html + '',
+        t = p_html + '',
         p = p_featureStr,
         eStart = t.indexOf(p),
         eEnd = null,

@@ -19,7 +19,7 @@ if (typeof window === 'undefined') {
     env = _default;
 } else {
     let
-    	_ua = navigator.userAgent,
+        _ua = navigator.userAgent,
         _m = null,
         _formatV = function(vstr, vdiv) {
             let f = vstr.split(vdiv);

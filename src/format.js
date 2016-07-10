@@ -76,14 +76,14 @@ const limit_decimal = (num, fix=2) => {
  */
 const num_pad_left = function(num, leng = 2) {
     let 
-    	lng = leng,
-    	zeroStr = '',
-    	n = num.toString();
+		lng = leng,
+		zeroStr = '',
+		n = num.toString();
     while (lng--) {
-    	zeroStr += '0';
+		zeroStr += '0';
     }
     if (n.length < leng)
-    	return zeroStr.substr(0, leng - n.length) + n;
+		return zeroStr.substr(0, leng - n.length) + n;
     return n;
 };
 

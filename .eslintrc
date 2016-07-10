@@ -27,10 +27,13 @@
   "parser": "babel-eslint",
 
   "plugins": [
-    
   ],
-
+  "extends": [
+    "eslint:recommended"
+  ],
   "rules": {
-    
+    "no-empty": ["error", {
+      "allowEmptyCatch": true
+    }],
   }
 }

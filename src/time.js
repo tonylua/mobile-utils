@@ -1,5 +1,4 @@
 import {num_pad_left} from './format';
-import env from './env';
 
 export const
 	_aSecond = 1000,
@@ -60,7 +59,7 @@ function getTime(setting) {
         d.setTime(d.getTime() + offset);
     }
     return d;
-};
+}
 
 /**
  * 取得当天
@@ -98,7 +97,7 @@ function get_clean_date(p_month=1, p_year=(new Date).getFullYear()) {
     d.setFullYear(p_year);
     d.setMonth(p_month-1);
     return d;
-};
+}
 
 /**
  * 取得某月的日历
@@ -133,7 +132,7 @@ function calender(p_month=1, p_year=(new Date).getFullYear()) {
         putDay(null, true);
     }
     return matrix;
-};
+}
 
 /**
  * 取得开始-结束的日期范围
@@ -142,7 +141,7 @@ function calender(p_month=1, p_year=(new Date).getFullYear()) {
  * @return {Object}
  * @memberOf mUtils.time
  */
-function date_range(rangeNums, from = getToday()) {
+function date_range(rangeNums, from = today()) {
     let 
         days = parseInt(rangeNums) * _aDay,
         endDay = getTime({from, offset: days}),
@@ -152,7 +151,7 @@ function date_range(rangeNums, from = getToday()) {
         start: arr[0], 
         end: arr[1]
     };
-};
+}
 
 /**
  * 是否闰年
@@ -167,7 +166,7 @@ function is_leap_year(year=null) {
     y = parseInt(y);
     if (isNaN(y)) y = currY;
     return !!(((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0));
-};
+}
 
 export
 /**

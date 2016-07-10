@@ -93,17 +93,18 @@ const listen_select_change = (sel, callback) => {
 };
 
 /**
- * 判断时间是否发生在制定元素范围内
+ * 判断时间是否发生在指定元素范围内
+ * @param {Element} targetDom - 指定元素
  * @return {Boolean}
  * @memberOf mUtils.event
  */
-const is_event_on_target = targetCtx => {
+const is_event_on_target = targetDom => {
     return function(e) {
         var tgt = e.target;
-        if ( $(tgt).is(targetCtx) ) return true;
+        if ( tgt === targetDom ) return true;
         while (tgt.parentElement !== null) {
             tgt = tgt.parentElement;
-            if ( is_event_on_target(targetCtx)({target: tgt}) ) return true;
+            if ( is_event_on_target(targetDom)({target: tgt}) ) return true;
         }
         return false;
     }

@@ -6,16 +6,16 @@
 function check_appcache() {
 	let
 		_appCache = window.applicationCache,
-    	support = !!_appCache;
+        support = !!_appCache;
     if (!support) return;
-    _appCache.addEventListener("updateready", e => {
+    _appCache.addEventListener("updateready", () => {
         if (_appCache.status == _appCache.UPDATEREADY) {
             try {
                 _appCache.swapCache();
             } catch (ex1) {}
             let 
-            	{origin, pathname, hash} = location,
-            	rnd = Math.random();
+                {origin, pathname, hash} = location,
+                rnd = Math.random();
             location.href = `${origin}${pathname}?rnd=${rnd}${hash}`;
         }
     }, false);
@@ -30,7 +30,7 @@ function check_appcache() {
 function page_to_top(top = -1) {
     document.getElementsByTagName('body')[0].scrollTop = top;
     window.scrollTo(0, top);
-};
+}
 
 /**
  * 在页面中动态写入css
@@ -44,10 +44,10 @@ function write_CSS(css) {
     try {
         s.appendChild(document.createTextNode(css));
     } catch (ex) {
-    	s.styleSheet.cssText = css;
+        s.styleSheet.cssText = css;
     }
     document.getElementsByTagName('head')[0].appendChild(s);
-};
+}
 
 export
 /**
