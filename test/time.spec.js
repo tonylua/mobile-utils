@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import mUtils from '../lib/mobile-utils.js';
 
-describe('test format module...', ()=>{
+describe('test format module...', ()=> {
 
 	let {
 			date_to_YMD,
