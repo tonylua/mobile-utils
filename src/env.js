@@ -1,4 +1,4 @@
-var 
+var
     _default = {
         ua: '',
         version: null,
@@ -79,7 +79,6 @@ if (typeof window === 'undefined') {
     }
 } //end of else
 
-export default
 /**
  * 获取移动设备型号版本等环境信息
  * @type {Object}
@@ -100,4 +99,4 @@ export default
         hashSupport
     }
  */
-env;
+export default env;

@@ -1,8 +1,8 @@
 {
   "name": "mobile-utils",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "common utils of mobile html5 development",
-  "main": "dist/mobile-utils",
+  "main": "lib/mobile-utils",
   "scripts": {
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
