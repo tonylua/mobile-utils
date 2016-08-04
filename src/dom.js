@@ -9,6 +9,15 @@ import {trim} from './format';
  */
 const has_class = (ele, clsName) => (new RegExp('(^|\\s)+(' + clsName + ')(\\s|$)+', 'g')).test(ele.className);
 
+const _ensure_domele = ele => {
+    if (typeof ele === 'string') {
+        try {
+            return document.querySelector(ele);
+        } catch (ex) {}
+    }
+    return ele;
+}
+
 /**
  * 删除className
  * @param  {Element} ele
@@ -16,15 +25,11 @@ const has_class = (ele, clsName) => (new RegExp('(^|\\s)+(' + clsName + ')(\\s|$
  * @return {void}
  * @memberOf mUtils.dom
  */
-function remove_class(ele, clsName) {
-    if (typeof ele === 'string') {
-        try {
-            ele = document.querySelector(ele);
-        } catch (ex) {}
-    }
+const remove_class = (ele, clsName) => {
+    let _ele = _ensure_domele(ele);
     let re = new RegExp('(^|\\s)+(' + clsName + ')(\\s|$)+', 'g');
     try {
-        ele.className = ele.className.replace(re, "$1$3");
+        _ele.className = _ele.className.replace(re, "$1$3");
     } catch (ex) {}
     re = null;
 }
@@ -36,14 +41,10 @@ function remove_class(ele, clsName) {
  * @return {void}
  * @memberOf mUtils.dom
  */
-function add_class(ele, clsName) {
-    if (typeof ele === 'string') {
-        try {
-            ele = document.querySelector(ele);
-        } catch (ex) {}
-    }
-    remove_class(ele, clsName);
-    ele.className = trim(ele.className + ' ' + clsName);
+const add_class = (ele, clsName) => {
+    let _ele = _ensure_domele(ele);
+    remove_class(_ele, clsName);
+    _ele.className = trim(_ele.className + ' ' + clsName);
 }
 
 /**
@@ -57,8 +58,8 @@ const real_style = (ele=null, styleName=null) => {
     if (!ele || !styleName) return;
     let rtn = '';
     try {
-        rtn = (typeof(window.getComputedStyle) == 'undefined') 
-            ? ele.currentStyle[styleName] 
+        rtn = (typeof(window.getComputedStyle) == 'undefined')
+            ? ele.currentStyle[styleName]
             : window.getComputedStyle(ele, null)[styleName];
     } catch (ex) {
         rtn = ele.style[styleName];
@@ -132,7 +133,31 @@ const tag_range_from_HTML = (p_featureStr, p_html) => {
 };
 
 
-export 
+let
+    _vendor = (/webkit/i).test(navigator.appVersion) ? "webkit": (/firefox/i).test(navigator.userAgent) ? "Moz": "opera" in window ? "O": (/MSIE/i).test(navigator.userAgent) ? "ms": "",
+    _has3d = "WebKitCSSMatrix" in window && "m11" in new WebKitCSSMatrix(),
+    _trnOpen = "translate" + (_has3d ? "3d(": "("),
+    _trnClose = _has3d ? ",0)": ")"
+;
+/**
+ * 为元素附加2d移动的css3样式
+ * @param  {Element} dom - 目标元素
+ * @param  {Number} x - x轴上移动的px值
+ * @param  {Number} y - y轴上移动的px值
+ * @param  {Number} [duration=null] - 持续的毫秒数
+ * @return {void}
+ * @memberOf mUtils.dom
+ */
+const transformXY = (dom, x=0, y=0, duration=null) => {
+    if (duration !== null
+        && typeof duration === 'number'
+        && duration>=0) {
+        dom.style[_vendor + 'TransitionDuration'] = duration*1000 + 's';
+    }
+    dom.style[_vendor + 'Transform'] = `${_trnOpen}${x}px,${y}px${_trnClose}`;
+};
+
+export
 /**
  * @namespace dom
  * @memberOf mUtils
@@ -146,4 +171,5 @@ export
     append_HTML,
     prepend_HTML,
     tag_range_from_HTML,
+    transformXY
 };

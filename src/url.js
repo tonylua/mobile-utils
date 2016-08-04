@@ -28,7 +28,7 @@ const query_params = (query = window.location.search.substring(1)) => {
 	if (!query) return null;
     let obj = {};
 	query.split('&').forEach(function(params) {
-		let 
+		let
 			p = params.split('='),
 			key = p[0],
 			vlu = decodeURIComponent(p[1]);
@@ -56,7 +56,6 @@ class URLHash {
             h = href,
             s = separator,
             uArr = _split2(h, hashChar),
-            // href_part = uArr[0],
             hash_part = uArr[1];
         this.map = {};
         this.separator = separator;
@@ -145,7 +144,7 @@ class URLHash {
     }
 }
 
-export 
+export
 /**
  * @namespace url
  * @memberOf mUtils

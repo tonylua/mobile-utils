@@ -40,6 +40,7 @@ the entry point
         * [.append_HTML(dom, html)](#mUtils.dom.append_HTML) ⇒ <code>void</code>
         * [.prepend_HTML(dom, html)](#mUtils.dom.prepend_HTML) ⇒ <code>void</code>
         * [.tag_range_from_HTML(p_featureStr, p_html)](#mUtils.dom.tag_range_from_HTML) ⇒ <code>Object</code>
+        * [.transformXY(dom, x, y, [duration])](#mUtils.dom.transformXY) ⇒ <code>void</code>
     * [.env](#mUtils.env) : <code>object</code>
     * [.event](#mUtils.event) : <code>object</code>
         * [.on_tweened(dom, callback)](#mUtils.event.on_tweened) ⇒ <code>void</code>
@@ -78,6 +79,10 @@ the entry point
             * [.clone()](#mUtils.url.URLHash+clone) ⇒ <code>URLHash</code>
         * [.query_params([query])](#mUtils.url.query_params) ⇒ <code>Object</code>
     * [.utils](#mUtils.utils) : <code>object</code>
+        * [.ScrollLocker](#mUtils.utils.ScrollLocker)
+            * [new ScrollLocker(settings)](#new_mUtils.utils.ScrollLocker_new)
+            * [.lock()](#mUtils.utils.ScrollLocker+lock)
+            * [.unlock()](#mUtils.utils.ScrollLocker+unlock)
         * [.check_appcache()](#mUtils.utils.check_appcache) ⇒ <code>void</code>
         * [.page_to_top([top])](#mUtils.utils.page_to_top) ⇒ <code>void</code>
         * [.write_CSS(css)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
@@ -95,6 +100,7 @@ the entry point
     * [.append_HTML(dom, html)](#mUtils.dom.append_HTML) ⇒ <code>void</code>
     * [.prepend_HTML(dom, html)](#mUtils.dom.prepend_HTML) ⇒ <code>void</code>
     * [.tag_range_from_HTML(p_featureStr, p_html)](#mUtils.dom.tag_range_from_HTML) ⇒ <code>Object</code>
+    * [.transformXY(dom, x, y, [duration])](#mUtils.dom.transformXY) ⇒ <code>void</code>
 
 <a name="mUtils.dom.has_class"></a>
 
@@ -180,6 +186,20 @@ the entry point
 | --- | --- | --- |
 | p_featureStr | <code>String</code> | 特征值 |
 | p_html | <code>String</code> | 作为查找范围的html |
+
+<a name="mUtils.dom.transformXY"></a>
+
+#### dom.transformXY(dom, x, y, [duration]) ⇒ <code>void</code>
+为元素附加2d移动的css3样式
+
+**Kind**: static method of <code>[dom](#mUtils.dom)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| dom | <code>Element</code> |  | 目标元素 |
+| x | <code>Number</code> |  | x轴上移动的px值 |
+| y | <code>Number</code> |  | y轴上移动的px值 |
+| [duration] | <code>Number</code> | <code></code> | 持续的毫秒数 |
 
 <a name="mUtils.env"></a>
 
@@ -622,10 +642,48 @@ the entry point
 **Kind**: static namespace of <code>[mUtils](#mUtils)</code>  
 
 * [.utils](#mUtils.utils) : <code>object</code>
+    * [.ScrollLocker](#mUtils.utils.ScrollLocker)
+        * [new ScrollLocker(settings)](#new_mUtils.utils.ScrollLocker_new)
+        * [.lock()](#mUtils.utils.ScrollLocker+lock)
+        * [.unlock()](#mUtils.utils.ScrollLocker+unlock)
     * [.check_appcache()](#mUtils.utils.check_appcache) ⇒ <code>void</code>
     * [.page_to_top([top])](#mUtils.utils.page_to_top) ⇒ <code>void</code>
     * [.write_CSS(css)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
 
+<a name="mUtils.utils.ScrollLocker"></a>
+
+#### utils.ScrollLocker
+锁定屏幕，限制其响应划动事件
+
+**Kind**: static class of <code>[utils](#mUtils.utils)</code>  
+
+* [.ScrollLocker](#mUtils.utils.ScrollLocker)
+    * [new ScrollLocker(settings)](#new_mUtils.utils.ScrollLocker_new)
+    * [.lock()](#mUtils.utils.ScrollLocker+lock)
+    * [.unlock()](#mUtils.utils.ScrollLocker+unlock)
+
+<a name="new_mUtils.utils.ScrollLocker_new"></a>
+
+##### new ScrollLocker(settings)
+构造方法
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| settings | <code>Object</code> | 构造参数对象，可以设置ignores忽略对象列表等 |
+
+<a name="mUtils.utils.ScrollLocker+lock"></a>
+
+##### scrollLocker.lock()
+执行锁定
+
+**Kind**: instance method of <code>[ScrollLocker](#mUtils.utils.ScrollLocker)</code>  
+<a name="mUtils.utils.ScrollLocker+unlock"></a>
+
+##### scrollLocker.unlock()
+解除锁定
+
+**Kind**: instance method of <code>[ScrollLocker](#mUtils.utils.ScrollLocker)</code>  
 <a name="mUtils.utils.check_appcache"></a>
 
 #### utils.check_appcache() ⇒ <code>void</code>
