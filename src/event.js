@@ -8,10 +8,10 @@ import {append_HTML} from './dom';
  * @return {void}
  * @memberOf mUtils.event
  */
-const on_tweened = (dom, callback) => 
+const on_tweened = (dom, callback) =>
     dom.addEventListener('webkitTransitionEnd', function fn(e) {
         e.currentTarget.removeEventListener('webkitTransitionEnd', fn);
-        callback.call(null)
+        callback.call(null, e)
     });
 
 /**
@@ -28,7 +28,7 @@ const on_page_loaded = callback => {
     }
     window.addEventListener('DOMContentLoaded', function fn(e) {
         e.currentTarget.removeEventListener('DOMContentLoaded', fn);
-        callback.call(null)
+        callback.call(null, e)
     });
 };
 
