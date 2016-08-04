@@ -26,12 +26,14 @@ if (typeof window === 'undefined') {
             f = f.shift() + '.' + f.join('');
             return f * 1;
         },
-        _break = false,
-        env = Object.assign({}, _default, {
-            ua: _ua,
-            touchSupport: ('createTouch' in document),
-            hashSupport: !!('onhashchange' in window)
-        });
+        _break = false
+    ;
+
+    env = Object.assign({}, _default, {
+        ua: _ua,
+        touchSupport: ('createTouch' in document),
+        hashSupport: !!('onhashchange' in window)
+    });
 
     _m = _ua.match(/MicroMessenger\/([\.0-9]+)/);
     if (_m != null) {
