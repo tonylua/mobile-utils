@@ -22,6 +22,9 @@ let config = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
+  externals: {
+    "underscore": "underscore"
+  },
   module: {
     loaders: [
       {

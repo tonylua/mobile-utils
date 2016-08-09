@@ -1,6 +1,6 @@
 {
   "name": "mobile-utils",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "common utils of mobile html5 development",
   "main": "lib/mobile-utils",
   "scripts": {
@@ -36,5 +36,7 @@
     "webpack": "^1.13.1",
     "yargs": "^4.7.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
 }

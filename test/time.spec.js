@@ -1,3 +1,4 @@
+import _ from '../node_modules/underscore/underscore';
 import {expect} from 'chai';
 import mUtils from '../lib/mobile-utils.js';
 
@@ -55,10 +56,10 @@ describe('test format module...', ()=> {
 				return parseInt(time / 1000);
 			}
 			expect( today().getDate() ).to.equal( now.getDate() );
-			expect( getSeconds(yesterday(false).getTime()) ).to.equal( 
+			expect( getSeconds(yesterday(false).getTime()) ).to.equal(
 				getSeconds(now.getTime() - mUtils.time._aDay)
 			);
-			expect( getSeconds(tomorrow(false).getTime()) ).to.equal( 
+			expect( getSeconds(tomorrow(false).getTime()) ).to.equal(
 				getSeconds(now.getTime() + mUtils.time._aDay)
 			);
 		});

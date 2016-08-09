@@ -1,3 +1,4 @@
+import _ from '../node_modules/underscore/underscore';
 import jsdom from 'mocha-jsdom';
 import {expect} from 'chai';
 import mUtils from '../lib/mobile-utils.js';
@@ -9,7 +10,7 @@ describe('test dom module...', function() {
 
 	//https://github.com/cure53/DOMPurify/issues/80
 	// "insertAdjacentHTML is missing in jsdom"
-	let 
+	let
 		dom1,
 		{
 			has_class,
@@ -62,7 +63,7 @@ describe('test dom module...', function() {
 
 	describe('test tag_range_from_HTML', ()=>{
 		it('should return the right tag range', ()=>{
-			let 
+			let
 				html = dom1.innerHTML,
 				range = tag_range_from_HTML('width:50%', html);
 			expect(range.start).to.equal(0);

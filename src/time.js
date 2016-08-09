@@ -1,3 +1,4 @@
+import _ from 'underscore';
 import {num_pad_left} from './format';
 
 export const
@@ -7,7 +8,7 @@ export const
     _aDay = 24 * _aHour;
 
 // export function local_date(dateStr=null) {
-//     let 
+//     let
 //         d = dateStr ? new Date(dateStr) : new Date,
 //         timeOffset = d.getTimezoneOffset() * _aMinute,
 //         localDate = new Date(d.getTime() + timeOffset);
@@ -32,17 +33,17 @@ function date_to_YMD(date, div='-') {
  * @memberOf mUtils.time
  */
 function getTime(setting) {
-    setting = Object.assign({
-        offset: 0, 
-        zeroTime: false, 
-        clean: false, 
+    setting = _.assign({
+        offset: 0,
+        zeroTime: false,
+        clean: false,
         from: new Date
     }, setting);
-    let 
+    let
         {
-            offset, 
-            zeroTime, 
-            clean, 
+            offset,
+            zeroTime,
+            clean,
             from
         } = setting,
         d = new Date(from);
@@ -142,13 +143,13 @@ function calender(p_month=1, p_year=(new Date).getFullYear()) {
  * @memberOf mUtils.time
  */
 function date_range(rangeNums, from = today()) {
-    let 
+    let
         days = parseInt(rangeNums) * _aDay,
         endDay = getTime({from, offset: days}),
         arr = [from, endDay];
     arr.sort((a,b)=>a-b);
     return {
-        start: arr[0], 
+        start: arr[0],
         end: arr[1]
     };
 }
@@ -159,8 +160,8 @@ function date_range(rangeNums, from = today()) {
  * @return {Boolean}
  * @memberOf mUtils.time
  */
-function is_leap_year(year=null) { 
-    let 
+function is_leap_year(year=null) {
+    let
         currY = (new Date).getFullYear(),
         y = year || currY;
     y = parseInt(y);

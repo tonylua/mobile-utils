@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 /**
  * 检查并监听applicationCache的更新情况
  * @return {void}
@@ -61,7 +63,7 @@ class ScrollLocker {
      * @return {void}
      */
     constructor(settings) {
-        this._cfg = Object.assign({
+        this._cfg = _.assign({
             ignores: []
         }, settings);
         this._scr = this._onscroll.bind(this);

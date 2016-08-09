@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 var
     _default = {
         ua: '',
@@ -29,7 +31,7 @@ if (typeof window === 'undefined') {
         _break = false
     ;
 
-    env = Object.assign({}, _default, {
+    env = _.assign({}, _default, {
         ua: _ua,
         touchSupport: ('createTouch' in document),
         hashSupport: !!('onhashchange' in window)

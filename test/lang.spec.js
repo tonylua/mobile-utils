@@ -1,3 +1,4 @@
+import _ from '../node_modules/underscore/underscore';
 import {expect} from 'chai';
 import mUtils from '../lib/mobile-utils.js';
 
@@ -14,7 +15,7 @@ describe('test lang module...', ()=>{
 
 	describe('when call the function with args', ()=>{
 		it('should return correct string', ()=>{
-			const 
+			const
 				tmpl = 'what a {0} {1}! {0}!',
 				word1 = 'wonderful',
 				word2 = 'world',
