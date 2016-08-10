@@ -1,6 +1,6 @@
 {
   "name": "mobile-utils",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "common utils of mobile html5 development",
   "main": "lib/mobile-utils",
   "scripts": {

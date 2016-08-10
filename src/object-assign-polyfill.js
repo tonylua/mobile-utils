@@ -1,34 +1,24 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
-if (!Object.assign) {
-	Object.defineProperty(Object, 'assign', {
-		enumerable: false,
-		configurable: true,
-		writable: true,
-		value: function value(target) {
-			'use strict';
+if (typeof Object.assign != 'function') {
+  Object.assign = function(target) {
+    'use strict';
+    if (target == null) {
+      throw new TypeError('Cannot convert undefined or null to object');
+    }
 
-			if (target === undefined || target === null) {
-				throw new TypeError('[Object.assign] Cannot convert first argument to object');
-			}
-			var to = Object(target);
-			for (var i = 1; i < arguments.length; i++) {
-				var nextSource = arguments[i];
-				if (nextSource === undefined || nextSource === null) {
-					continue;
-				}
-				nextSource = Object(nextSource);
-				var keysArray = Object.keys(Object(nextSource));
-				for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-					var nextKey = keysArray[nextIndex];
-					var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-					if (desc !== undefined && desc.enumerable) {
-						to[nextKey] = nextSource[nextKey];
-					}
-				}
-			}
-			return to;
-		}
-	});
+    target = Object(target);
+    for (var index = 1; index < arguments.length; index++) {
+      var source = arguments[index];
+      if (source != null) {
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+    }
+    return target;
+  };
 }
 var o = Object.assign;
 export default o;
