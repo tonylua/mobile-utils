@@ -133,12 +133,7 @@ const tag_range_from_HTML = (p_featureStr, p_html) => {
 };
 
 
-let
-    _vendor = (/webkit/i).test(navigator.appVersion) ? "webkit": (/firefox/i).test(navigator.userAgent) ? "Moz": "opera" in window ? "O": (/MSIE/i).test(navigator.userAgent) ? "ms": "",
-    _has3d = "WebKitCSSMatrix" in window && "m11" in new WebKitCSSMatrix(),
-    _trnOpen = "translate" + (_has3d ? "3d(": "("),
-    _trnClose = _has3d ? ",0)": ")"
-;
+
 /**
  * 为元素附加2d移动的css3样式
  * @param  {Element} dom - 目标元素
@@ -149,6 +144,12 @@ let
  * @memberOf mUtils.dom
  */
 const transformXY = (dom, x=0, y=0, duration=null) => {
+    let
+        _vendor = (/webkit/i).test(navigator.appVersion) ? "webkit": (/firefox/i).test(navigator.userAgent) ? "Moz": "opera" in window ? "O": (/MSIE/i).test(navigator.userAgent) ? "ms": "",
+        _has3d = "WebKitCSSMatrix" in window && "m11" in new WebKitCSSMatrix(),
+        _trnOpen = "translate" + (_has3d ? "3d(": "("),
+        _trnClose = _has3d ? ",0)": ")"
+    ;
     if (duration !== null
         && typeof duration === 'number'
         && duration>=0) {

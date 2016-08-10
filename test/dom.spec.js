@@ -1,4 +1,3 @@
-import _ from '../node_modules/underscore/underscore';
 import jsdom from 'mocha-jsdom';
 import {expect} from 'chai';
 import mUtils from '../lib/mobile-utils.js';

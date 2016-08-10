@@ -1,4 +1,3 @@
-import _ from 'underscore';
 import {num_pad_left} from './format';
 
 export const
@@ -33,7 +32,7 @@ function date_to_YMD(date, div='-') {
  * @memberOf mUtils.time
  */
 function getTime(setting) {
-    setting = _.assign({
+    setting = Object.assign({
         offset: 0,
         zeroTime: false,
         clean: false,

@@ -1,3 +1,4 @@
+import osp from './object-assign-polyfill';  // eslint-disable-line no-unused-vars
 import env from './env';
 import * as lang from './lang';
 import * as dom from './dom';
@@ -13,13 +14,13 @@ import * as utils from './utils';
  * @type {Object}
  */
 const mUtils = {
-    env,
-    lang,
-    dom,
-    event,
-    format,
-    time,
-    url,
-    utils
+	env,
+	lang,
+	dom,
+	event,
+	format,
+	time,
+	url,
+	utils
 };
 export default mUtils;

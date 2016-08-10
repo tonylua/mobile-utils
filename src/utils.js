@@ -1,4 +1,13 @@
-import _ from 'underscore';
+/**
+ * 确保老旧的设备可以使用html5的新元素
+ * @return {void}
+ * @memberOf mUtils.utils
+ */
+function enable_html5_for_old() {
+    let tags = 'abbr,article,aside,audio,canvas,datalist,details,dialog,eventsource,fieldset,figure,figcaption,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,small,time,video,legend';
+    tags.split(',').forEach(ele=>document.createElement(ele));
+    write_CSS(tags + '{display:block;}');
+}
 
 /**
  * 检查并监听applicationCache的更新情况
@@ -63,7 +72,7 @@ class ScrollLocker {
      * @return {void}
      */
     constructor(settings) {
-        this._cfg = _.assign({
+        this._cfg = Object.assign({
             ignores: []
         }, settings);
         this._scr = this._onscroll.bind(this);
@@ -122,6 +131,7 @@ export
  * @type {Object}
  */
 {
+    enable_html5_for_old,
     check_appcache,
     page_to_top,
     write_CSS,

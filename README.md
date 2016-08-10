@@ -83,6 +83,7 @@ the entry point
             * [new ScrollLocker(settings)](#new_mUtils.utils.ScrollLocker_new)
             * [.lock()](#mUtils.utils.ScrollLocker+lock)
             * [.unlock()](#mUtils.utils.ScrollLocker+unlock)
+        * [.enable_html5_for_old()](#mUtils.utils.enable_html5_for_old) ⇒ <code>void</code>
         * [.check_appcache()](#mUtils.utils.check_appcache) ⇒ <code>void</code>
         * [.page_to_top([top])](#mUtils.utils.page_to_top) ⇒ <code>void</code>
         * [.write_CSS(css)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
@@ -646,6 +647,7 @@ the entry point
         * [new ScrollLocker(settings)](#new_mUtils.utils.ScrollLocker_new)
         * [.lock()](#mUtils.utils.ScrollLocker+lock)
         * [.unlock()](#mUtils.utils.ScrollLocker+unlock)
+    * [.enable_html5_for_old()](#mUtils.utils.enable_html5_for_old) ⇒ <code>void</code>
     * [.check_appcache()](#mUtils.utils.check_appcache) ⇒ <code>void</code>
     * [.page_to_top([top])](#mUtils.utils.page_to_top) ⇒ <code>void</code>
     * [.write_CSS(css)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
@@ -684,6 +686,12 @@ the entry point
 解除锁定
 
 **Kind**: instance method of <code>[ScrollLocker](#mUtils.utils.ScrollLocker)</code>  
+<a name="mUtils.utils.enable_html5_for_old"></a>
+
+#### utils.enable_html5_for_old() ⇒ <code>void</code>
+确保老旧的设备可以使用html5的新元素
+
+**Kind**: static method of <code>[utils](#mUtils.utils)</code>  
 <a name="mUtils.utils.check_appcache"></a>
 
 #### utils.check_appcache() ⇒ <code>void</code>
