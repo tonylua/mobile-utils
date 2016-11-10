@@ -87,6 +87,7 @@ the entry point
         * [.check_appcache()](#mUtils.utils.check_appcache) ⇒ <code>void</code>
         * [.page_to_top([top])](#mUtils.utils.page_to_top) ⇒ <code>void</code>
         * [.write_CSS(css)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
+        * [.form_primary_valid(form, submitCallback, [submitTriggerEvent], [submitTriggerTarget], [mismatchNoticeName])](#mUtils.utils.form_primary_valid) ⇒ <code>void</code>
 
 <a name="mUtils.dom"></a>
 
@@ -651,6 +652,7 @@ the entry point
     * [.check_appcache()](#mUtils.utils.check_appcache) ⇒ <code>void</code>
     * [.page_to_top([top])](#mUtils.utils.page_to_top) ⇒ <code>void</code>
     * [.write_CSS(css)](#mUtils.utils.write_CSS) ⇒ <code>void</code>
+    * [.form_primary_valid(form, submitCallback, [submitTriggerEvent], [submitTriggerTarget], [mismatchNoticeName])](#mUtils.utils.form_primary_valid) ⇒ <code>void</code>
 
 <a name="mUtils.utils.ScrollLocker"></a>
 
@@ -719,4 +721,19 @@ the entry point
 | Param | Type | Description |
 | --- | --- | --- |
 | css | <code>String</code> | css字符串 |
+
+<a name="mUtils.utils.form_primary_valid"></a>
+
+#### utils.form_primary_valid(form, submitCallback, [submitTriggerEvent], [submitTriggerTarget], [mismatchNoticeName]) ⇒ <code>void</code>
+利用html5的原生pattern校验，对自定义了规则的表单项提示错误信息
+
+**Kind**: static method of <code>[utils](#mUtils.utils)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| form | <code>Element</code> |  |  |
+| submitCallback | <code>function</code> | <code></code> | 校验成功后的回掉函数，参数为 (form, fieldsObj) |
+| [submitTriggerEvent] | <code>String</code> | <code>&#x27;click&#x27;</code> | 触发校验的事件 |
+| [submitTriggerTarget] | <code>String</code> | <code>&#x27;.submit&#x27;</code> | 触发校验的目标元素上下文 |
+| [mismatchNoticeName] | <code>String</code> | <code>&#x27;mismatch&#x27;</code> | 与pattern属性匹配的自定义提示语data-属性 |
 

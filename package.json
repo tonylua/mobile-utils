@@ -1,6 +1,6 @@
 {
   "name": "mobile-utils",
-  "version": "1.0.12",
+  "version": "1.0.14",
   "description": "common utils of mobile html5 development",
   "main": "lib/mobile-utils",
   "scripts": {
@@ -29,7 +29,7 @@
     "chai": "^3.5.0",
     "eslint": "^3.0.1",
     "eslint-loader": "^1.4.0",
-    "jsdoc-to-markdown": "^1.3.6",
+    "jsdoc-to-markdown": "^2.0.1",
     "jsdom": "^9.4.1",
     "mocha": "^2.5.3",
     "mocha-jsdom": "^1.1.0",
