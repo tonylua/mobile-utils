@@ -86,7 +86,7 @@ function form_primary_valid(
     //onInput
     fields.forEach(ipt=>ipt.addEventListener('input', e=>e.currentTarget.setCustomValidity('')));
     //onSubmit
-    form.querySelector(submitTriggerTarget).addEventListener(submitTriggerEvent, e=>{ // eslint-disable-line no-unused-vars
+    form.querySelector(submitTriggerTarget).addEventListener(submitTriggerEvent, e=>{
         fields = get_fields();
         let 
             obj = {}
@@ -101,6 +101,8 @@ function form_primary_valid(
                     ipt.setCustomValidity('');
                 else if (ipt.dataset.hasOwnProperty(mismatchNoticeName)) //不符合pattern
                     ipt.setCustomValidity(ipt.dataset[mismatchNoticeName]);
+                if (e.currentTarget.type !== 'submit')
+                    ipt.reportValidity();
                 bool = false;
                 break;
             } else {
