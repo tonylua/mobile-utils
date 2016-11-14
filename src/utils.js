@@ -82,7 +82,7 @@ function form_primary_valid(
 {
     const show_alert = ipt=>{
         let func = ipt.reportValidity 
-            ? ipt.setCustomValidity 
+            ? ipt.setCustomValidity.bind(ipt)
             : (noticeFunction || alert);
         if (ipt.validity.valueMissing) { //空缺
             let msg = ipt.reportValidity 
