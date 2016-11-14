@@ -63,7 +63,8 @@ function write_CSS(css) {
 /**
  * 利用html5的原生pattern校验，对自定义了规则的表单项提示错误信息
  * @param  {Element} form
- * @param  {Function} submitCallback - 校验成功后的回掉函数，参数为 (form, fieldsObj)
+ * @param  {Function} [submitCallback=null] - 校验成功后的回掉函数，参数为 (form, fieldsObj)
+ * @param  {Function} [noticeFunction=null] - *IOS only* 提示错误的方法
  * @param  {String} [submitTriggerEvent='click'] - 触发校验的事件
  * @param  {String} [submitTriggerTarget='.submit'] - 触发校验的目标元素上下文
  * @param  {String} [mismatchNoticeName='mismatch'] - 与pattern属性匹配的自定义提示语data-属性
@@ -73,10 +74,28 @@ function write_CSS(css) {
 function form_primary_valid(
     form, 
     submitCallback = null,
+    noticeFunction = null,
     submitTriggerEvent = 'click',
     submitTriggerTarget = '.submit',
-    mismatchNoticeName = 'mismatch')
+    mismatchNoticeName = 'mismatch',
+    missingNoticeName = 'missing')
 {
+    const show_alert = ipt=>{
+        let func = ipt.reportValidity 
+            ? ipt.setCustomValidity 
+            : (noticeFunction || alert);
+        if (ipt.validity.valueMissing) { //空缺
+            let msg = ipt.reportValidity 
+                ? '' 
+                : ipt.dataset.hasOwnProperty(mismatchNoticeName)
+                    ? ipt.dataset[missingNoticeName]
+                    : `${ipt.name} is required!`;
+            func(msg);
+        } else if (ipt.dataset.hasOwnProperty(mismatchNoticeName)) {//不符合pattern
+            let msg = ipt.dataset[mismatchNoticeName];
+            func(msg);
+        }
+    };
     const get_fields = ()=> [].slice.call(form.querySelectorAll('input[pattern]'), 0);
     let fields = get_fields();
     if (!fields.length) {
@@ -97,10 +116,7 @@ function form_primary_valid(
             let fake = ipt.cloneNode();
             if (ipt.type === 'number') fake.type = 'text'; //既支持数字键盘，又能使用原生验证
             if (!fake.checkValidity()) {
-                if (ipt.hasAttribute('required') && ipt.validity.valueMissing) //空缺
-                    ipt.setCustomValidity('');
-                else if (ipt.dataset.hasOwnProperty(mismatchNoticeName)) //不符合pattern
-                    ipt.setCustomValidity(ipt.dataset[mismatchNoticeName]);
+                show_alert(ipt);
                 if (e.currentTarget.type !== 'submit')
                     ipt.reportValidity();
                 bool = false;
