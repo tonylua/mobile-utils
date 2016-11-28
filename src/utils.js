@@ -115,9 +115,13 @@ function form_primary_valid(
             let ipt = fields.shift();
             let fake = ipt.cloneNode();
             if (ipt.type === 'number') fake.type = 'text'; //既支持数字键盘，又能使用原生验证
-            if (!fake.checkValidity()) {
+            if (!fake.checkValidity()
+                && !fake.validity.valid //iphone6s、itouch5等机型会在valid的情况下checkValidity出错
+                ) {
                 show_alert(ipt);
-                if (e.currentTarget.type !== 'submit')
+                if (e.currentTarget.type !== 'submit'
+                    && typeof ipt.reportValidity === 'function' //iphone6s等机型没有这个
+                )
                     ipt.reportValidity();
                 bool = false;
                 break;
