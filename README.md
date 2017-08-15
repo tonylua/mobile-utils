@@ -24,25 +24,6 @@ mUtils.format.limit_decimal(someNum)
 ```
 
 ## 3. API
-## Objects
-
-<dl>
-<dt><a href="#mUtils">mUtils</a> : <code>object</code></dt>
-<dd><p>the entry point</p>
-</dd>
-</dl>
-
-## Functions
-
-<dl>
-<dt><a href="#num_limit_leng">num_limit_leng(value, leng)</a> ⇒ <code>Number</code></dt>
-<dd><p>只允许数字并限制位数</p>
-</dd>
-<dt><a href="#params_query">params_query(obj, [separator])</a> ⇒ <code>String</code></dt>
-<dd><p>将object转换为query字符串</p>
-</dd>
-</dl>
-
 <a name="mUtils"></a>
 
 ## mUtils : <code>object</code>
@@ -74,6 +55,7 @@ the entry point
         * [.knot_num(num, [fix])](#mUtils.format.knot_num) ⇒ <code>String</code>
         * [.limit_decimal(num, [fix])](#mUtils.format.limit_decimal) ⇒ <code>String</code>
         * [.num_pad_left(num, [leng])](#mUtils.format.num_pad_left) ⇒ <code>String</code>
+        * [.num_limit_leng(value, leng)](#mUtils.format.num_limit_leng) ⇒ <code>Number</code>
         * [.trim(str)](#mUtils.format.trim) ⇒ <code>String</code>
     * [.lang](#mUtils.lang) : <code>object</code>
         * [.read_i18n(tmpl, ...args)](#mUtils.lang.read_i18n) ⇒ <code>String</code>
@@ -97,6 +79,7 @@ the entry point
             * [.toString()](#mUtils.url.URLHash+toString) ⇒ <code>String</code>
             * [.clone()](#mUtils.url.URLHash+clone) ⇒ <code>URLHash</code>
         * [.query_params([query])](#mUtils.url.query_params) ⇒ <code>Object</code>
+        * [.params_query(obj, [separator])](#mUtils.url.params_query) ⇒ <code>String</code>
     * [.utils](#mUtils.utils) : <code>object</code>
         * [.ScrollLocker](#mUtils.utils.ScrollLocker)
             * [new ScrollLocker(settings)](#new_mUtils.utils.ScrollLocker_new)
@@ -335,6 +318,7 @@ the entry point
     * [.knot_num(num, [fix])](#mUtils.format.knot_num) ⇒ <code>String</code>
     * [.limit_decimal(num, [fix])](#mUtils.format.limit_decimal) ⇒ <code>String</code>
     * [.num_pad_left(num, [leng])](#mUtils.format.num_pad_left) ⇒ <code>String</code>
+    * [.num_limit_leng(value, leng)](#mUtils.format.num_limit_leng) ⇒ <code>Number</code>
     * [.trim(str)](#mUtils.format.trim) ⇒ <code>String</code>
 
 <a name="mUtils.format.reverse_str"></a>
@@ -397,6 +381,18 @@ the entry point
 | --- | --- | --- | --- |
 | num | <code>Number</code> |  | 目标数字 |
 | [leng] | <code>Number</code> | <code>2</code> | 最终位数 |
+
+<a name="mUtils.format.num_limit_leng"></a>
+
+#### format.num_limit_leng(value, leng) ⇒ <code>Number</code>
+只允许数字并限制位数
+
+**Kind**: static method of <code>[format](#mUtils.format)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>String</code> | 原始输入值 |
+| leng | <code>Number</code> | 最大长度 |
 
 <a name="mUtils.format.trim"></a>
 
@@ -560,6 +556,7 @@ the entry point
         * [.toString()](#mUtils.url.URLHash+toString) ⇒ <code>String</code>
         * [.clone()](#mUtils.url.URLHash+clone) ⇒ <code>URLHash</code>
     * [.query_params([query])](#mUtils.url.query_params) ⇒ <code>Object</code>
+    * [.params_query(obj, [separator])](#mUtils.url.params_query) ⇒ <code>String</code>
 
 <a name="mUtils.url.URLHash"></a>
 
@@ -656,6 +653,18 @@ the entry point
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | [query] | <code>String</code> | <code>当前url的query</code> | 给定的query字符串 |
+
+<a name="mUtils.url.params_query"></a>
+
+#### url.params_query(obj, [separator]) ⇒ <code>String</code>
+将object转换为query字符串
+
+**Kind**: static method of <code>[url](#mUtils.url)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| obj | <code>Object</code> |  | 键值对的对象 |
+| [separator] | <code>Stribng</code> | <code>&#x27;&amp;&#x27;</code> | 分隔符 |
 
 <a name="mUtils.utils"></a>
 
@@ -756,28 +765,4 @@ the entry point
 | [submitTriggerEvent] | <code>String</code> | <code>&#x27;click&#x27;</code> | 触发校验的事件 |
 | [submitTriggerTarget] | <code>String</code> | <code>&#x27;.submit&#x27;</code> | 触发校验的目标元素上下文 |
 | [mismatchNoticeName] | <code>String</code> | <code>&#x27;mismatch&#x27;</code> | 与pattern属性匹配的自定义提示语data-属性 |
-
-<a name="num_limit_leng"></a>
-
-## num_limit_leng(value, leng) ⇒ <code>Number</code>
-只允许数字并限制位数
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| value | <code>String</code> | 原始输入值 |
-| leng | <code>Number</code> | 最大长度 |
-
-<a name="params_query"></a>
-
-## params_query(obj, [separator]) ⇒ <code>String</code>
-将object转换为query字符串
-
-**Kind**: global function  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| obj | <code>Object</code> |  | 键值对的对象 |
-| [separator] | <code>Stribng</code> | <code>&#x27;&amp;&#x27;</code> | 分隔符 |
 

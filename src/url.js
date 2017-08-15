@@ -30,6 +30,7 @@ const query_params = (query = window.location.search.substring(1)) => {
  * @param  {Object} obj - 键值对的对象
  * @param  {Stribng} [separator='&'] - 分隔符
  * @return {String}
+ * @memberOf mUtils.url
  */
 function params_query(obj, separator='&') {
     let

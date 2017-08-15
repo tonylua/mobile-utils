@@ -92,6 +92,7 @@ const num_pad_left = function(num, leng = 2) {
  * @param  {String} value - 原始输入值
  * @param  {Number} leng - 最大长度
  * @return {Number}
+ * @memberOf mUtils.format
  */
 const num_limit_leng = (value, leng)=>parseInt(
 	String(value).replace(/\D/g, '').substring(0, leng)
