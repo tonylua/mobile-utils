@@ -10,6 +10,7 @@ describe('test format module...', ()=>{
 		    num_pad_left,
 		    limit_decimal,
 		    trim,
+		    num_limit_leng,
 		} = mUtils.format;
 
 	describe('test reverse_str', ()=>{
@@ -53,6 +54,14 @@ describe('test format module...', ()=>{
 			expect( limit_decimal(102.339) ).to.equal('102.34');
 			expect( limit_decimal(102.) ).to.equal('102.00');
 			expect( limit_decimal('102.') ).to.equal('102.00');
+		});
+	});
+
+	describe('test num_limit_leng', ()=>{
+		it('should limit the length of a value and trans it to a number', ()=>{
+			expect( num_limit_leng('a1b2c3', 5) ).to.equal(123);
+			expect( num_limit_leng('1234566', 5) ).to.equal(12345);
+			expect( num_limit_leng(' 11223c2..3422...x', 7) ).to.equal(1122323);
 		});
 	});
 

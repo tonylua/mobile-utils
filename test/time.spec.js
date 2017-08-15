@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import mUtils from '../lib/mobile-utils.js';
 
-describe('test format module...', ()=> {
+describe('test time module...', ()=> {
 
 	let {
 			date_to_YMD,
@@ -66,8 +66,8 @@ describe('test format module...', ()=> {
 
 	describe('test get_clean_date', ()=>{
 		it('should get a begining day of a month', ()=>{
-			expect( get_clean_date(3, 1982).toLocaleString().substring(0, 10) ).to.equal('1982-03-01');
-			expect( get_clean_date(5, 1982).toLocaleString().substring(0, 10) ).to.equal('1982-05-01');
+			expect( get_clean_date(3, 1982).toLocaleString().split(/[\s$]/)[0] ).to.equal('1982-3-1');
+			expect( get_clean_date(5, 1982).toLocaleString().split(/[\s$]/)[0] ).to.equal('1982-5-1');
 		});
 	});
 

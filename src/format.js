@@ -88,6 +88,16 @@ const num_pad_left = function(num, leng = 2) {
 };
 
 /**
+ * 只允许数字并限制位数
+ * @param  {String} value - 原始输入值
+ * @param  {Number} leng - 最大长度
+ * @return {Number}
+ */
+const num_limit_leng = (value, leng)=>parseInt(
+	String(value).replace(/\D/g, '').substring(0, leng)
+);
+
+/**
  * 去首尾空格
  * @param  {String} str
  * @return {String}
@@ -106,6 +116,7 @@ export
     step_str,
     knot_num,
     num_pad_left,
+    num_limit_leng,
     limit_decimal,
     trim,
 };

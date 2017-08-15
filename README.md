@@ -24,6 +24,25 @@ mUtils.format.limit_decimal(someNum)
 ```
 
 ## 3. API
+## Objects
+
+<dl>
+<dt><a href="#mUtils">mUtils</a> : <code>object</code></dt>
+<dd><p>the entry point</p>
+</dd>
+</dl>
+
+## Functions
+
+<dl>
+<dt><a href="#num_limit_leng">num_limit_leng(value, leng)</a> ⇒ <code>Number</code></dt>
+<dd><p>只允许数字并限制位数</p>
+</dd>
+<dt><a href="#params_query">params_query(obj, [separator])</a> ⇒ <code>String</code></dt>
+<dd><p>将object转换为query字符串</p>
+</dd>
+</dl>
+
 <a name="mUtils"></a>
 
 ## mUtils : <code>object</code>
@@ -737,4 +756,28 @@ the entry point
 | [submitTriggerEvent] | <code>String</code> | <code>&#x27;click&#x27;</code> | 触发校验的事件 |
 | [submitTriggerTarget] | <code>String</code> | <code>&#x27;.submit&#x27;</code> | 触发校验的目标元素上下文 |
 | [mismatchNoticeName] | <code>String</code> | <code>&#x27;mismatch&#x27;</code> | 与pattern属性匹配的自定义提示语data-属性 |
+
+<a name="num_limit_leng"></a>
+
+## num_limit_leng(value, leng) ⇒ <code>Number</code>
+只允许数字并限制位数
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | <code>String</code> | 原始输入值 |
+| leng | <code>Number</code> | 最大长度 |
+
+<a name="params_query"></a>
+
+## params_query(obj, [separator]) ⇒ <code>String</code>
+将object转换为query字符串
+
+**Kind**: global function  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| obj | <code>Object</code> |  | 键值对的对象 |
+| [separator] | <code>Stribng</code> | <code>&#x27;&amp;&#x27;</code> | 分隔符 |
 

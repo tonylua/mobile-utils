@@ -1,18 +1,6 @@
 /**
  * @private
  */
-function _map2query(q, separator) {
-    let
-        u = encodeURIComponent,
-        k,
-        r = [],
-        d = separator ? separator : '&';
-    for (k in q) r.push(u(k) + '=' + u(q[k]));
-    return r.join(d);
-}
-/**
- * @private
- */
 function _split2(s, separator) {
     let i = s.indexOf(separator);
     return i == -1 ? [s, ''] : [s.substring(0, i), s.substring(i + 1)];
@@ -37,6 +25,20 @@ const query_params = (query = window.location.search.substring(1)) => {
     return obj;
 };
 
+/**
+ * 将object转换为query字符串
+ * @param  {Object} obj - 键值对的对象
+ * @param  {Stribng} [separator='&'] - 分隔符
+ * @return {String}
+ */
+function params_query(obj, separator='&') {
+    let
+        u = encodeURIComponent,
+        k,
+        r = [];
+    for (k in obj) r.push(u(k) + '=' + u(obj[k]));
+    return r.join(separator);
+}
 
 /**
  * 将hash部分转化为object
@@ -133,7 +135,7 @@ class URLHash {
         let m2 = {};
         for (let m in this.map)
             if (m != '_hashfoo_') m2[m] = this.map[m];
-        return _map2query(m2, "&");
+        return params_query(m2, "&");
     }
     /**
      * 克隆一个实例
@@ -152,5 +154,6 @@ export
  */
 {
     query_params,
+    params_query,
     URLHash,
 };

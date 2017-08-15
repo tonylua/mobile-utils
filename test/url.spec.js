@@ -7,11 +7,17 @@ describe('test url module...', function() {
 	this.timeout(20*1000);
 	jsdom();
 
-	const {query_params, URLHash} = mUtils.url;
+	const {query_params, params_query, URLHash} = mUtils.url;
 
 	describe('test query_params', ()=>{
 		it('should parse the query string to a object', ()=>{
 			expect( query_params('x=1&y=2') ).to.have.property('x').to.equal('1');
+		});
+	});
+
+	describe('test params_query', ()=>{
+		it('should parse the object to a query string', ()=>{
+			expect( params_query({a:1, b:2}, '%%') ).to.equal('a=1%%b=2');
 		});
 	});
 
